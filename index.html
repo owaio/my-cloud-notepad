@@ -1,15 +1,19 @@
-<!DOCTYPE html><html lang="zh-TW">
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>雲端記事本</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雲端記事本</title>
     
-    <script src="https://cdn.tailwindcss.com"></script><script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
         tailwind.config = {
             darkMode: 'class'
         };
     </script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <linkrel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json">
     
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
@@ -20,53 +24,64 @@
         .panel-large-text { font-size: 16px !important; font-weight: 800 !important; }
         .sync-btn-font { font-size: 14px !important; font-weight: 900 !important; }
         
-        /* 💡 去掉了標題下劃線 border-bottom */
-        .md-preview h1 { font-size: 2.6rem;font-weight: 800; padding-bottom: 0.3em; margin-top:1.6rem; margin-bottom: 1rem; }
-        .md-preview h2 { font-size: 2.1rem; font-weight: 700; padding-bottom: 0.3em; margin-top: 1.4rem; margin-bottom: 0.8rem;}
-        .md-preview h3 { font-size: 1.8rem; font-weight:600; margin-top: 1.2rem; margin-bottom: 0.6rem; }
-        .md-preview p, .md-preview div { margin-bottom: 0.3rem; line-height: 1.3; font-size: 18px; }/* 💡 重新喚醒 Tailwind 預設屏蔽的列表樣式 */
-        .md-previewul { list-style-type: disc !important; margin-left: 1.5rem !important;padding-left: 0.5rem; margin-bottom: 0.5rem; }
-        .md-preview ol { list-style-type: decimal !important; margin-left: 1.5rem!important; padding-left: 0.5rem; margin-bottom: 0.5rem; }.md-preview li { display: list-item !important; margin-bottom: 0.25rem; }
+        /* 💡 去掉了標題下划线 border-bottom */
+        .md-preview h1 { font-size: 2.6rem; font-weight: 800; padding-bottom: 0.3em; margin-top: 1.6rem; margin-bottom: 1rem; }
+        .md-preview h2 { font-size: 2.1rem; font-weight: 700; padding-bottom: 0.3em; margin-top: 1.4rem; margin-bottom: 0.8rem; }
+        .md-preview h3 { font-size: 1.8rem; font-weight: 600; margin-top: 1.2rem; margin-bottom: 0.6rem; }
+        .md-preview p, .md-preview div { margin-bottom: 0.3rem; line-height: 1.3; font-size: 18px; }
+        
+        /* 💡 重新唤醒 Tailwind 默认屏蔽的列表样式 */
+        .md-preview ul { list-style-type: disc !important; margin-left: 1.5rem !important; padding-left: 0.5rem; margin-bottom: 0.5rem; }
+        .md-preview ol { list-style-type: decimal !important; margin-left: 1.5rem !important; padding-left: 0.5rem; margin-bottom: 0.5rem; }
+        .md-preview li { display: list-item !important; margin-bottom: 0.25rem; }
 
-        .md-preview code { background-color: #fee2e2; padding:0.2em 0.5em; border-radius: 6px; font-size:95%; font-family: monospace; color: #be185d; }
+        .md-preview code { background-color: #fee2e2; padding: 0.2em 0.5em; border-radius: 6px; font-size: 95%; font-family: monospace; color: #be185d; }
         .md-preview pre { background-color: #1e293b; color: #f8fafc; padding: 1.5rem; border-radius: 10px; overflow-x: auto; margin-bottom: 1.5rem; }
-        .md-preview pre code { background-color: transparent; color: inherit;padding: 0; font-size: 17px; }
-        .md-preview a { color: #2563eb; text-decoration: underline; font-weight: bold; cursor: pointer;transition: all 0.2; }
+        .md-preview pre code { background-color: transparent; color: inherit; padding: 0; font-size: 17px; }
+        .md-preview a { color: #2563eb; text-decoration: underline; font-weight: bold; cursor: pointer; transition: all 0.2; }
         .md-preview a:hover { color: #1e40af; text-decoration-style: dashed; }
         .md-preview img {
-            max-width: 100%; height: auto; border-radius: 10px; margin:14px 0;
+            max-width: 100%; height: auto; border-radius: 10px; margin: 14px 0;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08); display: inline-block;
             transition: outline 0.2, box-shadow 0.2, transform 0.1;
             object-fit: contain;
-        }.md-preview img:hover {
+        }
+        .md-preview img:hover {
             outline: 3px dashed #60a5fa; outline-offset: 2px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.15);
             cursor: ns-resize;
-        }[contenteditable]:empty:before { content: attr(placeholder); color: #cbd5e1; pointer-events: none; display: block; }
+        }
+        [contenteditable]:empty:before { content: attr(placeholder); color: #cbd5e1; pointer-events: none; display: block; }
         .resizer { width: 6px; cursor: col-resize; background-color: #e2e8f0; transition: background-color 0.2; position: relative; z-index: 10; }
-        .resizer:hover, .resizer.resizing { background-color: #2563eb; width: 6px; }.no-select { user-select: none; -webkit-user-select: none; }::-webkit-scrollbar { width: 6px; height: 6px; }
+        .resizer:hover, .resizer.resizing { background-color: #2563eb; width: 6px; }
+        .no-select { user-select: none; -webkit-user-select: none; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        .dragging-node { opacity: 0.4; border: 2pxdashed #3b82f6 !important; background-color: #eff6ff !important; }.tree-node-wrapper:hover { background-color: #f1f5f9;}
-        .active-tree-node { background-color: #3b82f6 !important;color: white !important; }
-        #left-notes-container div.active-note-item:hover{ background-color: #3b82f6 !important; }
+        .dragging-node { opacity: 0.4; border: 2px dashed #3b82f6 !important; background-color: #eff6ff !important; }
+        
+        .tree-node-wrapper:hover { background-color: #f1f5f9; }
+        .active-tree-node { background-color: #3b82f6 !important; color: white !important; }
+        #left-notes-container div.active-note-item:hover { background-color: #3b82f6 !important; }
     </style>
 </head>
 <body class="bg-slate-900 font-sans h-screen flex flex-col overflow-hidden text-slate-800 dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300">
     
-    <div id="auth-overlay"class="fixed inset-0 bg-slate-900 z-[100] flex items-center justify-center transition-opacity">
+    <div id="auth-overlay" class="fixed inset-0 bg-slate-900 z-[100] flex items-center justify-center transition-opacity">
         <div class="bg-white p-8 rounded-2xl shadow-2xl w-96 flex flex-col gap-4">
             <h2 class="text-2xl font-black mb-2 text-center text-slate-800" id="auth-title">登入雲端工作台</h2>
             <div id="auth-error" class="hidden bg-red-100 text-red-600 p-2 rounded text-sm font-bold text-center"></div>
-            <input type="text" id="auth-username" placeholder="請輸入帳號" class="w-full border-2 border-slate-200 p-3 rounded-xl outline-none focus:border-blue-500 transition-colors font-bold text-slate-700"><input type="password" id="auth-password" placeholder="請輸入密碼" class="w-full border-2 border-slate-200 p-3 rounded-xl outline-none focus:border-blue-500 transition-colors font-bold text-slate-700">
+            <input type="text" id="auth-username" placeholder="請輸入帳號" class="w-full border-2 border-slate-200 p-3 rounded-xl outline-none focus:border-blue-500 transition-colors font-bold text-slate-700">
+            <input type="password" id="auth-password" placeholder="請輸入密碼" class="w-full border-2 border-slate-200 p-3 rounded-xl outline-none focus:border-blue-500 transition-colors font-bold text-slate-700">
             <button onclick="handleAuth()" id="auth-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-3 rounded-xl shadow-md transition-all mt-2">登入</button>
-            <div class="text-center text-sm font-bold text-slate-500 cursor-pointer hover:text-blue-600 transition-colors mt-2"onclick="toggleAuthMode()" id="auth-toggle">沒有帳號？點擊註冊新帳號</div>
-        </div></div>
+            <div class="text-center text-sm font-bold text-slate-500 cursor-pointer hover:text-blue-600 transition-colors mt-2" onclick="toggleAuthMode()" id="auth-toggle">沒有帳號？點擊註冊新帳號</div>
+        </div>
+    </div>
 
-    <header id="app-header" class="bg-slate-800 text-slate-200 py-1 pl-6 flex items-center justify-between flex-shrink-0 select-noneborder-b border-slate-700 shadow-md relative z-[60]" style="-webkit-app-region: drag;">
+    <header id="app-header" class="bg-slate-800 text-slate-200 py-1 pl-6 flex items-center justify-between flex-shrink-0 select-none border-b border-slate-700 shadow-md relative z-[60]" style="-webkit-app-region: drag;">
         
-        <div class="flex items-center gap-3 z-10flex-shrink-0" style="-webkit-app-region: no-drag;">
+        <div class="flex items-center gap-3 z-10 flex-shrink-0" style="-webkit-app-region: no-drag;">
             <button onclick="toggleLeftPanel()" class="bg-blue-700 hover:bg-blue-800 text-white font-black px-3 py-1 rounded-xl text-sm transition-all shadow-md flex items-center gap-2 border border-blue-600 mr-2 whitespace-nowrap flex-shrink-0">
                 <i id="left-panel-toggle-icon" class="fa-solid fa-folder-tree text-xs"></i> <span id="btn-toggle-left-text" data-i18n="nav-sidebar">側欄</span>
             </button>
@@ -74,147 +89,185 @@
         
         <div class="flex-1 flex justify-center items-center pointer-events-none pr-8">
             <div class="hidden md:flex items-center gap-2 w-max">
-                <i class="fa-solidfa-pen-to-square text-yellow-400 text-1xl"></i>
-                <spanclass="font-black tracking-wider text-xl lg:text-lg bg-clip-text text-transparentbg-gradient-to-r from-white to-slate-300" data-i18n="app-title">
-                    雲端筆記
+                <i class="fa-solid fa-pen-to-square text-yellow-400 text-1xl"></i>
+                <span class="font-black tracking-wider text-xl lg:text-lg bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-300" data-i18n="app-title">
+                    雲端記事本
                 </span>
             </div>
         </div>
             
-        <div class="flex items-center gap-4 text-slate-400 text-base z-10 flex-shrink-0 pr-[260px]" style="-webkit-app-region: no-drag;"><div class="relative flex-shrink-0 z-[70]">
-                <button onclick="toggleSettingsMenu(event)" class="text-slate-300 hover:text-white transition-all hover:rotate-90 duration-300 flex items-center p-1" title="系統設定"><i class="fa-solid fa-gear text-lg"></i>
+        <div class="flex items-center gap-4 text-slate-400 text-base z-10 flex-shrink-0 pr-[260px]" style="-webkit-app-region: no-drag;">
+            
+            <div class="relative flex-shrink-0 z-[70]">
+                <button onclick="toggleSettingsMenu(event)" class="text-slate-300 hover:text-white transition-all hover:rotate-90 duration-300 flex items-center p-1" title="系統設定">
+                    <i class="fa-solid fa-gear text-lg"></i>
                 </button>
                 
-                <divid="settings-dropdown" class="hidden absolute right-0 top-full mt-3 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden z-50 flex flex-col py-1">
-                    <button onclick="toggleLanguage(); closeSettingsMenu();" class="w-full text-leftpx-4 py-2.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 flexitems-center gap-3 font-bold transition-colors">
+                <div id="settings-dropdown" class="hidden absolute right-0 top-full mt-3 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden z-50 flex flex-col py-1">
+                    <button onclick="toggleLanguage(); closeSettingsMenu();" class="w-full text-left px-4 py-2.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-3 font-bold transition-colors">
                         <i class="fa-solid fa-language text-lg text-blue-500 w-4 text-center"></i> <span data-i18n="lang-toggle">切換語言 / EN</span>
                     </button>
                     
                     <div class="h-px bg-slate-100 dark:bg-slate-700 w-full my-1"></div>
                     
-                    <div class="px-4 py-1.5 text-[11px] text-slate-400 dark:text-slate-500 font-black tracking-widestuppercase" data-i18n="theme-title">主題模式</div>
-                    <button onclick="setTheme('light'); closeSettingsMenu();" class="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100dark:hover:bg-slate-700 flex items-center gap-3 font-bold transition-colors">
+                    <div class="px-4 py-1.5 text-[11px] text-slate-400 dark:text-slate-500 font-black tracking-widest uppercase" data-i18n="theme-title">主題模式</div>
+                    <button onclick="setTheme('light'); closeSettingsMenu();" class="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-3 font-bold transition-colors">
                         <i class="fa-solid fa-sun text-yellow-500 w-4 text-center"></i> <span data-i18n="theme-light">淺色</span>
                     </button>
                     <button onclick="setTheme('dark'); closeSettingsMenu();" class="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-3 font-bold transition-colors">
-                        <i class="fa-solid fa-moontext-blue-400 w-4 text-center"></i> <span data-i18n="theme-dark">深色</span>
+                        <i class="fa-solid fa-moon text-blue-400 w-4 text-center"></i> <span data-i18n="theme-dark">深色</span>
                     </button>
-                    <button onclick="setTheme('system'); closeSettingsMenu();" class="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-3 font-bold transition-colors"><i class="fa-solid fa-desktop text-slate-400 w-4 text-center"></i> <span data-i18n="theme-sys">系統</span>
-                    </button><div class="h-px bg-slate-100 dark:bg-slate-700 w-full my-1"></div>
+                    <button onclick="setTheme('system'); closeSettingsMenu();" class="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-3 font-bold transition-colors">
+                        <i class="fa-solid fa-desktop text-slate-400 w-4 text-center"></i> <span data-i18n="theme-sys">系統</span>
+                    </button>
+                    
+                    <div class="h-px bg-slate-100 dark:bg-slate-700 w-full my-1"></div>
                     
                     <button onclick="logout()" class="w-full text-left px-4 py-2.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-3 font-bold transition-colors">
-                        <i class="fa-solidfa-right-from-bracket text-slate-400 w-4 text-center"></i> <spandata-i18n="nav-logout">登出帳號</span>
-                    </button><button onclick="deleteAccount()" class="w-full text-left px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 flex items-center gap-3 font-bold transition-colors"><i class="fa-solid fa-user-xmark w-4 text-center"></i> <span data-i18n="nav-delete">註銷帳號</span>
+                        <i class="fa-solid fa-right-from-bracket text-slate-400 w-4 text-center"></i> <span data-i18n="nav-logout">退出登入</span>
+                    </button>
+                    <button onclick="deleteAccount()" class="w-full text-left px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 flex items-center gap-3 font-bold transition-colors">
+                        <i class="fa-solid fa-user-xmark w-4 text-center"></i> <span data-i18n="nav-delete">註銷帳號</span>
                     </button>
                 </div>
-            </div><button onclick="toggleRightPanel()" class="bg-red-700 hover:bg-red-800 text-white font-black px-3 py-1 rounded-xl text-sm transition-all shadow-md flex items-center justify-center gap-2 border border-red-600 whitespace-nowrap flex-shrink-0">
+            </div>
+
+            <button onclick="toggleRightPanel()" class="bg-red-700 hover:bg-red-800 text-white font-black px-3 py-1 rounded-xl text-sm transition-all shadow-md flex items-center justify-center gap-2 border border-red-600 whitespace-nowrap flex-shrink-0">
                 <i id="right-panel-toggle-icon" class="fa-solid fa-dumpster-fire text-xs"></i> <span id="btn-toggle-right-text" data-i18n="nav-history">歷史</span>
-            </button></div>
+            </button>
+            
+        </div>
     </header>
 
     <div id="workspace-container" class="flex flex-1 overflow-hidden w-full bg-slate-200 dark:bg-slate-900 transition-colors duration-300">
         
-        <aside id="left-panel" class="bg-slate-50 dark:bg-slate-800 dark:border-slate-700 flex flex-col flex-shrink-0 overflow-hidden border-r border-slate-200 panel-large-text transition-all absolute md:relativez-50 h-full shadow-2xl md:shadow-none" style="width: 220px; min-width: 160px; max-width: 480px;"><div class="p-1.5 border-b border-slate-200 dark:border-slate-700 bg-slate-100/80 dark:bg-slate-800/80 flex flex-col gap-1 flex-shrink-0">
+        <aside id="left-panel" class="bg-slate-50 dark:bg-slate-800 dark:border-slate-700 flex flex-col flex-shrink-0 overflow-hidden border-r border-slate-200 panel-large-text transition-all absolute md:relative z-50 h-full shadow-2xl md:shadow-none" style="width: 220px; min-width: 160px; max-width: 480px;">
+            <div class="p-1.5 border-b border-slate-200 dark:border-slate-700 bg-slate-100/80 dark:bg-slate-800/80 flex flex-col gap-1 flex-shrink-0">
                 <div class="flex items-center gap-1.5 px-1">
-                    <button id="btn-new-note" onclick="createNewNote()" class="flex-1 py-1 px-1 flex items-center justify-center gap-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-black transition-all shadow-sm text-xs"><i class="fa-solid fa-file-plus"></i> <span data-i18n="btn-new-note">新建筆記</span></button>
-                    <button onclick="createNewCategory()" class="flex-1 py-1 px-1 flex items-center justify-center gap-1bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-black transition-all shadow-sm text-xs"><i class="fa-solid fa-folder-plus"></i><span data-i18n="btn-new-folder">新建分類</span></button>
-                </div><div class="px-1 mt-0.5">
-                    <div class="relativeflex items-center w-full">
-                        <i class="fa-solid fa-magnifying-glass absoluteleft-2 text-slate-400 text-[11px]"></i>
+                    <button id="btn-new-note" onclick="createNewNote()" class="flex-1 py-1 px-1 flex items-center justify-center gap-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-black transition-all shadow-sm text-xs"><i class="fa-solid fa-file-plus"></i> <span data-i18n="btn-new-note">新增筆記</span></button>
+                    <button onclick="createNewCategory()" class="flex-1 py-1 px-1 flex items-center justify-center gap-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-black transition-all shadow-sm text-xs"><i class="fa-solid fa-folder-plus"></i> <span data-i18n="btn-new-folder">新增分類</span></button>
+                </div>
+                
+                <div class="px-1 mt-0.5">
+                    <div class="relative flex items-center w-full">
+                        <i class="fa-solid fa-magnifying-glass absolute left-2 text-slate-400 text-[11px]"></i>
                         <input type="text" id="global-search-input" oninput="renderLeftNotesView()" placeholder="搜尋標題或內容..." class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-600 rounded-lg py-1 pl-6 pr-2 text-xs font-bold text-slate-700 dark:text-slate-200 outline-none focus:border-blue-500 transition-all shadow-inner placeholder-slate-400">
-                    </div></div>
+                    </div>
+                </div>
                 
                 <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-1.5 mb-0 shadow-sm flex-shrink-0 mt-1">
-                    <button onclick="toggleImportExport()" class="w-fullflex items-center justify-between bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs px-3 py-1 rounded-lg transition-all cursor-pointer shadow-sm border border-emerald-600">
+                    <button onclick="toggleImportExport()" class="w-full flex items-center justify-between bg-emerald-500 hover:bg-emerald-600 text-white font-black text-xs px-3 py-1 rounded-lg transition-all cursor-pointer shadow-sm border border-emerald-600">
                         <span class="flex items-center gap-1"><i class="fa-solid fa-box-archive text-white"></i> <span data-i18n="btn-import-export">匯入與匯出</span></span>
                         <i id="import-export-arrow" class="fa-solid fa-chevron-down transition-transform duration-200 text-emerald-100 text-[10px]"></i>
                     </button>
     
-                    <div id="import-export-content" class="hidden flex flex-col gap-1.5 border-t border-slate-100 dark:border-slate-700 pt-1.5 mt-1.5"><div class="flex flex-col gap-0.5 bg-white/70 dark:bg-slate-900/50 p-1 rounded-lg border border-slate-200/60 dark:border-slate-700/60">
+                    <div id="import-export-content" class="hidden flex flex-col gap-1.5 border-t border-slate-100 dark:border-slate-700 pt-1.5 mt-1.5">
+                        <div class="flex flex-col gap-0.5 bg-white/70 dark:bg-slate-900/50 p-1 rounded-lg border border-slate-200/60 dark:border-slate-700/60">
                             <div class="flex items-center gap-1.5">
-                                <button onclick="triggerImport('md')" class="flex-1 py-1 px-1 bg-amber-500 hover:bg-amber-600 text-whiterounded-lg font-black transition-all text-center truncate text-xs shadow-sm"><i class="fa-solid fa-file-import"></i> MD</button>
+                                <button onclick="triggerImport('md')" class="flex-1 py-1 px-1 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-black transition-all text-center truncate text-xs shadow-sm"><i class="fa-solid fa-file-import"></i> MD</button>
                                 <button onclick="exportFile('md')" class="flex-1 py-1 px-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-black transition-all text-center truncate text-xs shadow-sm"><i class="fa-solid fa-file-export"></i> MD</button>
                             </div>
                             <div class="flex items-center gap-1.5">
-                                <button onclick="triggerImport('txt')" class="flex-1 py-1 px-1 bg-amber-500 hover:bg-amber-600text-white rounded-lg font-black transition-all text-center truncate text-xs shadow-sm"><i class="fa-solid fa-file-import"></i> TXT</button>
-                                <button onclick="exportFile('txt')" class="flex-1 py-1 px-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-black transition-all text-center truncate text-xs shadow-sm"><i class="fa-solid fa-file-export"></i> TXT</button></div>
+                                <button onclick="triggerImport('txt')" class="flex-1 py-1 px-1 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-black transition-all text-center truncate text-xs shadow-sm"><i class="fa-solid fa-file-import"></i> TXT</button>
+                                <button onclick="exportFile('txt')" class="flex-1 py-1 px-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-black transition-all text-center truncate text-xs shadow-sm"><i class="fa-solid fa-file-export"></i> TXT</button>
+                            </div>
                             <div class="flex items-center gap-1.5">
                                 <button onclick="triggerFolderImport()" class="flex-1 py-1 px-1 bg-slate-700 hover:bg-slate-800 dark:bg-slate-600 dark:hover:bg-slate-500 text-white rounded-lg font-black transition-all text-center truncate text-xs shadow-sm">
-                                    <i class="fa-solid fa-folder-tree text-amber-400"></i> <span data-i18n="btn-import-folder">匯入資料夾</span></button>
+                                    <i class="fa-solid fa-folder-tree text-amber-400"></i> <span data-i18n="btn-import-folder">匯入資料夾</span>
+                                </button>
                                 <button onclick="exportCurrentFolder()" class="flex-1 py-1 px-1 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white rounded-lg font-black transition-all text-center truncate text-xs shadow-sm">
                                     <i class="fa-solid fa-file-zipper text-blue-200"></i> <span data-i18n="btn-export-folder">匯出資料夾</span>
                                 </button>
                             </div>
                         </div>
-                    </div></div>
+                    </div>
+                </div>
 
                 <input type="file" id="import-md-input" accept=".md" class="hidden" onchange="handleImportFile(event, 'md')">
-                <input type="file" id="import-txt-input" accept=".txt" class="hidden" onchange="handleImportFile(event,'txt')">
-                <input type="file" id="import-folder-input" webkitdirectory directorymultiple class="hidden" onchange="handleFolderImport(event)">
+                <input type="file" id="import-txt-input" accept=".txt" class="hidden" onchange="handleImportFile(event, 'txt')">
+                <input type="file" id="import-folder-input" webkitdirectory directory multiple class="hidden" onchange="handleFolderImport(event)">
             </div>
             
             <div id="all-docs-container" class="py-1 px-[9px] border-b border-slate-200 dark:border-slate-700 bg-slate-100/40 dark:bg-slate-800 flex-shrink-0"></div>
 
-            <div class="px-3.5 py-2 bg-slate-200/60 dark:bg-slate-900/60 flex items-center justify-between flex-shrink-0 select-none border-b border-slate-200 dark:border-slate-700 cursor-pointer hover:bg-slate-300/60 dark:hover:bg-slate-800 transition-colors" onclick="toggleFolderSection()"><span class="sync-btn-font text-yellow-600 dark:text-yellow-400 font-black flex items-center gap-1.5">
+            <div class="px-3.5 py-2 bg-slate-200/60 dark:bg-slate-900/60 flex items-center justify-between flex-shrink-0 select-none border-b border-slate-200 dark:border-slate-700 cursor-pointer hover:bg-slate-300/60 dark:hover:bg-slate-800 transition-colors" onclick="toggleFolderSection()">
+                <span class="sync-btn-font text-yellow-600 dark:text-yellow-400 font-black flex items-center gap-1.5">
                     <i id="folder-section-icon" class="fa-solid fa-chevron-down text-[11px] transition-transform duration-200"></i>
-                    <span data-i18n="label-folder">資料夾</span></span>
-                <div class="flex items-center gap-0.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 roundedp-0.5 shadow-inner scale-95 origin-right" onclick="event.stopPropagation()"><button id="view-tree-list" onclick="toggleTreeLayout('list')" class="px-2 py-0.5 text-xs font-black rounded hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-slate-200" data-i18n="btn-list">列表</button>
+                    <span data-i18n="label-folder">資料夾</span>
+                </span>
+                <div class="flex items-center gap-0.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded p-0.5 shadow-inner scale-95 origin-right" onclick="event.stopPropagation()">
+                    <button id="view-tree-list" onclick="toggleTreeLayout('list')" class="px-2 py-0.5 text-xs font-black rounded hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-slate-200" data-i18n="btn-list">列表</button>
                     <button id="view-tree-grid" onclick="toggleTreeLayout('grid')" class="px-2 py-0.5 text-xs font-black rounded hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-slate-200" data-i18n="btn-grid">圖表</button>
                 </div>
-            </div><div id="category-tree-container" class="p-2 border-b border-slate-200 dark:border-slate-700 bg-slate-100/40 dark:bg-slate-800/40 flex-shrink-0 max-h-72 overflow-y-auto space-y-1"></div>
+            </div>
             
-            <div class="px-3.5 py-2 bg-slate-200/60 dark:bg-slate-900/60flex items-center justify-between flex-shrink-0 select-none border-b border-slate-200 dark:border-slate-700 cursor-pointer hover:bg-slate-300/60 dark:hover:bg-slate-800 transition-colors" onclick="toggleContentSection()"><span class="sync-btn-font text-yellow-600 dark:text-yellow-400 font-black flex items-center gap-1.5">
+            <div id="category-tree-container" class="p-2 border-b border-slate-200 dark:border-slate-700 bg-slate-100/40 dark:bg-slate-800/40 flex-shrink-0 max-h-72 overflow-y-auto space-y-1"></div>
+            
+            <div class="px-3.5 py-2 bg-slate-200/60 dark:bg-slate-900/60 flex items-center justify-between flex-shrink-0 select-none border-b border-slate-200 dark:border-slate-700 cursor-pointer hover:bg-slate-300/60 dark:hover:bg-slate-800 transition-colors" onclick="toggleContentSection()">
+                <span class="sync-btn-font text-yellow-600 dark:text-yellow-400 font-black flex items-center gap-1.5">
                     <i id="content-section-icon" class="fa-solid fa-chevron-down text-[11px] transition-transform duration-200"></i>
-                    <span data-i18n="label-content">內容展示</span></span>
+                    <span data-i18n="label-content">內容展示</span>
+                </span>
                 <div class="flex items-center gap-0.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded p-0.5 shadow-inner scale-95 origin-right" onclick="event.stopPropagation()">
-                    <buttonid="view-left-list" onclick="toggleLeftView('list')" class="px-2 py-0.5 text-xs font-black rounded hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-slate-200" style="background-color: #3b82f6;" data-i18n="btn-list">列表</button>
+                    <button id="view-left-list" onclick="toggleLeftView('list')" class="px-2 py-0.5 text-xs font-black rounded hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-slate-200" style="background-color: #3b82f6;" data-i18n="btn-list">列表</button>
                     <button id="view-left-grid" onclick="toggleLeftView('grid')" class="px-2 py-0.5 text-xs font-black rounded hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-slate-200" style="background-color: transparent;" data-i18n="btn-grid">圖表</button>
                 </div>
             </div>
             
             <div id="content-section-container" class="flex-1 relative min-h-0 bg-slate-50/50 dark:bg-slate-800/50 transition-all duration-200">
-                <divid="left-notes-container" class="absolute inset-0 overflow-y-auto p-2 pb-6"></div>
+                <div id="left-notes-container" class="absolute inset-0 overflow-y-auto p-2 pb-6"></div>
             </div>
             
         </aside>
         
-        <div id="resizer-left" class="resizer hidden md:block dark:bg-slate-700"></div><section id="middle-panel" class="bg-white dark:bg-slate-950 flexflex-col flex-1 overflow-hidden min-w-0 md:min-w-[450px]transition-colors duration-300">
+        <div id="resizer-left" class="resizer hidden md:block dark:bg-slate-700"></div>
+        
+        <section id="middle-panel" class="bg-white dark:bg-slate-950 flex flex-col flex-1 overflow-hidden min-w-0 md:min-w-[450px] transition-colors duration-300">
             <div class="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 py-2 flex flex-col gap-2 select-none flex-shrink-0 shadow-sm z-10">
-                <div class="flex items-center justify-between flex-wrap gap-2"><div class="flex items-center gap-1 bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400border border-emerald-200 dark:border-emerald-800 px-2.5 py-1 rounded-lg shadow-sm font-black text-xs">
-                        <i class="fa-solid fa-pen-nib"></i> <span data-i18n="label-editor">編輯欄</span></div>
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <div class="flex items-center gap-1 bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 px-2.5 py-1 rounded-lg shadow-sm font-black text-xs">
+                        <i class="fa-solid fa-pen-nib"></i> <span data-i18n="label-editor">編輯欄</span>
+                    </div>
                     <div class="flex items-center gap-1 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 px-2.5 py-1 rounded-lg shadow-sm">
                         <span class="text-xs font-black text-blue-600 dark:text-blue-400"><i class="fa-solid fa-folder text-blue-500"></i> <span data-i18n="label-category">分類:</span></span>
-                        <select id="note-category-select" onchange="changeNoteCategory(this.value)" class="text-xs font-black text-blue-700dark:text-blue-300 bg-transparent outline-none cursor-pointer"></select>
-                    </div></div>
+                        <select id="note-category-select" onchange="changeNoteCategory(this.value)" class="text-xs font-black text-blue-700 dark:text-blue-300 bg-transparent outline-none cursor-pointer"></select>
+                    </div>
+                </div>
                 
                 <div id="editor-format-bar" class="flex items-center gap-1 flex-wrap bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1.5 rounded-lg shadow-inner">
-                    <select onchange="if(this.value){execCmd('fontSize', this.value);}" class="px-1.5 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 roundedborder border-slate-200 dark:border-slate-600 outline-none cursor-pointer bg-slate-50 dark:bg-slate-700">
+                    <select onchange="if(this.value){execCmd('fontSize', this.value);}" class="px-1.5 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 outline-none cursor-pointer bg-slate-50 dark:bg-slate-700">
                         <option value="" data-i18n="fmt-size">字號</option>
-                        <option value="1" data-i18n="sz-1">極小</option>
-                        <option value="2" data-i18n="sz-2">小號</option>
+                        <option value="1" data-i18n="sz-1">极小</option>
+                        <option value="2" data-i18n="sz-2">小号</option>
                         <option value="3" data-i18n="sz-3">正常</option>
-                        <option value="4" data-i18n="sz-4">大號</option>
+                        <option value="4" data-i18n="sz-4">大号</option>
                         <option value="5" data-i18n="sz-5">特大</option>
                         <option value="6" data-i18n="sz-6">超大</option>
-                        <option value="7" data-i18n="sz-7">極巨</option>
+                        <option value="7" data-i18n="sz-7">极巨</option>
                     </select>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
 
-                    <select onchange="if(this.value){execCmd('formatBlock', this.value);}" class="px-1.5 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 outline-none cursor-pointer bg-slate-50 dark:bg-slate-700"><option value="" data-i18n="fmt-heading">標題</option><option value="H1" data-i18n="h1">一級標題</option>
-                        <option value="H2" data-i18n="h2">二級標題</option><option value="H3" data-i18n="h3">三級標題</option><option value="P" data-i18n="p">正文</option>
+                    <select onchange="if(this.value){execCmd('formatBlock', this.value);}" class="px-1.5 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 outline-none cursor-pointer bg-slate-50 dark:bg-slate-700">
+                        <option value="" data-i18n="fmt-heading">标题</option>
+                        <option value="H1" data-i18n="h1">一级标题</option>
+                        <option value="H2" data-i18n="h2">二级标题</option>
+                        <option value="H3" data-i18n="h3">三级标题</option>
+                        <option value="P" data-i18n="p">正文</option>
                     </select>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
                     
-                    <button onmousedown="event.preventDefault();" onclick="execCmd('insertUnorderedList')" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600" title="無序列表"><i class="fa-solid fa-list-ul"></i></button>
-                    <button onmousedown="event.preventDefault();"onclick="execCmd('insertOrderedList')" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600" title="有序列表"><i class="fa-solid fa-list-ol"></i></button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('insertUnorderedList')" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600" title="无序列表"><i class="fa-solid fa-list-ul"></i></button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('insertOrderedList')" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600" title="有序列表"><i class="fa-solid fa-list-ol"></i></button>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
     
-                    <button onmousedown="event.preventDefault();" onclick="execCmd('bold')" class="px-2 py-0.5text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600"><i class="fa-solid fa-bold"></i></button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('bold')" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600"><i class="fa-solid fa-bold"></i></button>
     
-                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor','#ef4444')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color:#ef4444;" data-i18n="color-red">紅</button><button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#eab308')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #eab308;" data-i18n="color-yellow">黃</button>
-                    <button onmousedown="event.preventDefault();"onclick="execCmd('foreColor', '#3b82f6')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #3b82f6;" data-i18n="color-blue">藍</button>
-                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#22c55e')" class="px-1.5 py-0.5text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #22c55e;" data-i18n="color-green">綠</button>
-                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#000000')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #0f172a;" data-i18n="color-black">黑</button><button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#ffffff')" class="px-1.5 py-0.5 text-[11px] font-bold text-slate-800hover:opacity-80 rounded shadow-sm border border-slate-300" style="background-color: #ffffff;" data-i18n="color-white">白</button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#ef4444')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #ef4444;" data-i18n="color-red">红</button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#eab308')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #eab308;" data-i18n="color-yellow">黄</button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#3b82f6')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #3b82f6;" data-i18n="color-blue">蓝</button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#22c55e')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #22c55e;" data-i18n="color-green">绿</button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#000000')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #0f172a;" data-i18n="color-black">黑</button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#ffffff')" class="px-1.5 py-0.5 text-[11px] font-bold text-slate-800 hover:opacity-80 rounded shadow-sm border border-slate-300" style="background-color: #ffffff;" data-i18n="color-white">白</button>
 
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
 
@@ -222,22 +275,26 @@
                     <button onmousedown="event.preventDefault();" onclick="execCmd('removeFormat')" class="px-2 py-0.5 text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-600 rounded border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700"><i class="fa-solid fa-eraser"></i></button>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
     
-                    <button onmousedown="event.preventDefault(); document.getElementById('local-img-input').click()" class="px-2 py-0.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-700 rounded border border-emerald-200 dark:border-emerald-800 bg-emerald-50/50 dark:bg-slate-700"><i class="fa-regular fa-image"></i> <span data-i18n="fmt-img">圖</span></button>
+                    <button onmousedown="event.preventDefault(); document.getElementById('local-img-input').click()" class="px-2 py-0.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-700 rounded border border-emerald-200 dark:border-emerald-800 bg-emerald-50/50 dark:bg-slate-700"><i class="fa-regular fa-image"></i> <span data-i18n="fmt-img">图</span></button>
                 </div>
-                <input type="file" id="local-img-input" accept="image/*" class="hidden" onchange="handleLocalImageUpload(event)"></div>
+                <input type="file" id="local-img-input" accept="image/*" class="hidden" onchange="handleLocalImageUpload(event)">
+            </div>
             
             <div class="flex-1 flex flex-col p-5 overflow-y-auto w-full bg-white dark:bg-slate-950 relative">
-                <input id="note-title-input" oninput="handleEditorInput()" type="text" placeholder="此處輸入新隨筆標題..." class="w-full font-black text-2xl border-none outline-none mb-3 text-slate-900 dark:text-slate-100 placeholder-slate-300dark:placeholder-slate-600 bg-transparent flex-shrink-0">
-                <div id="note-editor-richtext" contenteditable="true" oninput="handleEditorInput()" placeholder="在這裡直接排版書寫..." class="md-preview w-full flex-1 outline-none text-slate-800 dark:text-slate-200 break-words"></div>
+                <input id="note-title-input" oninput="handleEditorInput()" type="text" placeholder="此处输入新随笔标题..." class="w-full font-black text-2xl border-none outline-none mb-3 text-slate-900 dark:text-slate-100 placeholder-slate-300 dark:placeholder-slate-600 bg-transparent flex-shrink-0">
+                <div id="note-editor-richtext" contenteditable="true" oninput="handleEditorInput()" placeholder="在这里直接排版书写..." class="md-preview w-full flex-1 outline-none text-slate-800 dark:text-slate-200 break-words"></div>
             </div>
-        </section><div id="resizer-right" class="resizer hidden dark:bg-slate-700"></div>
+        </section>
+        
+        <div id="resizer-right" class="resizer hidden dark:bg-slate-700"></div>
         
         <aside id="right-panel" class="hidden bg-slate-50 dark:bg-slate-800 dark:border-slate-700 flex flex-col flex-shrink-0 overflow-hidden border-l border-slate-200 panel-large-text" style="width: 250px; min-width: 200px; max-width: 480px;">
-            <div class="p-4 bg-slate-800 dark:bg-slate-900 text-white flex flex-col gap-3 flex-shrink-0 shadow-md"><span class="sync-btn-font tracking-wide flex items-center gap-1.5 text-slate-200 text-lg">
-                    <i class="fa-solid fa-dumpster-firetext-red-500"></i> <span data-i18n="trash-title">垃圾桶</span> (<span id="trash-count-badge">0</span>)
+            <div class="p-4 bg-slate-800 dark:bg-slate-900 text-white flex flex-col gap-3 flex-shrink-0 shadow-md">
+                <span class="sync-btn-font tracking-wide flex items-center gap-1.5 text-slate-200 text-lg">
+                    <i class="fa-solid fa-dumpster-fire text-red-500"></i> <span data-i18n="trash-title">回收站</span> (<span id="trash-count-badge">0</span>)
                 </span>
-                <div class="flexitems-center gap-2">
-                    <button onclick="recoverAllTrash()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-black py-2 rounded-xl text-xs transition-all shadow border border-emerald-500 flex items-center justify-center gap-1"><i class="fa-solid fa-trash-arrow-up"></i> <span data-i18n="btn-recover">復原</span></button>
+                <div class="flex items-center gap-2">
+                    <button onclick="recoverAllTrash()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-black py-2 rounded-xl text-xs transition-all shadow border border-emerald-500 flex items-center justify-center gap-1"><i class="fa-solid fa-trash-arrow-up"></i> <span data-i18n="btn-recover">恢复</span></button>
                     <button onclick="clearTrashCompletely()" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-black py-2 rounded-xl text-xs transition-all shadow border border-red-500 flex items-center justify-center gap-1"><i class="fa-solid fa-fire"></i> <span data-i18n="btn-empty">清空</span></button>
                 </div>
             </div>
@@ -245,26 +302,35 @@
         </aside>
     </div>
     
-    <div id="custom-context-menu" class="hidden fixed bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl py-1.5 w-44 z-50 text-xs font-bold text-slate-700 dark:text-slate-200 select-none"><button onclick="handleContextMenuRename()" class="w-full text-left px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2font-black"><i class="fa-regular fa-pen-to-square text-blue-500"></i> <span data-i18n="ctx-rename">重新命名分類</span></button><button id="ctx-delete-btn" onclick="handleContextMenuDelete()" class="w-full text-leftpx-4 py-2 hover:bg-red-50 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400 border-t border-slate-100 dark:border-slate-700 flex items-center gap-2 font-black"><i class="fa-regular fa-trash-can text-red-500"></i> <spandata-i18n="ctx-delete">安全刪除分類</span></button>
-    </div><script>
+    <div id="custom-context-menu" class="hidden fixed bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl py-1.5 w-44 z-50 text-xs font-bold text-slate-700 dark:text-slate-200 select-none">
+        <button onclick="handleContextMenuRename()" class="w-full text-left px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2 font-black"><i class="fa-regular fa-pen-to-square text-blue-500"></i> <span data-i18n="ctx-rename">重命名分类</span></button>
+        <button id="ctx-delete-btn" onclick="handleContextMenuDelete()" class="w-full text-left px-4 py-2 hover:bg-red-50 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400 border-t border-slate-100 dark:border-slate-700 flex items-center gap-2 font-black"><i class="fa-regular fa-trash-can text-red-500"></i> <span data-i18n="ctx-delete">安全删除分类</span></button>
+    </div>
+
+    <script>
         // ==========================================
-        // 字典與翻譯輔助引擎
+        // 字典与翻译辅助引擎
         // ==========================================
         const dict = {
             zh: {
-                'nav-logout': '登出帳號', 'nav-delete': '註銷帳號', 'nav-history': '歷史','theme-title': '主題模式', 'theme-light': '淺色模式', 'theme-dark':'深色模式', 'theme-sys': '跟隨系統',
-                'lang-toggle': '切換語言 / EN',
-                'nav-sidebar': '側欄', 'app-title': '雲端筆記',
-                'btn-new-note': '新建筆記', 'btn-new-folder':'新建分類',
-                'btn-import-export': '匯入與匯出', 'label-folder': '資料夾',
-                'label-content': '內容展示', 'label-editor': '編輯欄',
-                'label-category': '歸屬地:', 'trash-title': '垃圾桶','btn-list': '列表', 'btn-grid': '圖表',
-                'all-docs':'全文件展示', 'no-data': '無資料', 'trash-empty': '垃圾桶空空如也','untitled': '無標題', 'original-folder': '原位置:',
-                'fmt-size': '字號', 'sz-1': '極小', 'sz-2': '小號', 'sz-3': '正常', 'sz-4': '大號', 'sz-5': '特大', 'sz-6': '超大', 'sz-7': '極巨',
-                'fmt-heading': '標題', 'h1': '一級標題', 'h2': '二級標題', 'h3': '三級標題', 'p': '正文',
-                'color-white': '白', 'color-red': '紅', 'color-yellow': '黃', 'color-blue': '藍', 'color-green': '綠', 'color-black': '黑',
-                'fmt-img': '圖', 'btn-recover': '復原', 'btn-empty': '清空', 'ctx-rename': '重新命名分類', 'ctx-delete': '安全刪除分類','未分類': '未分類', '工作': '工作', '生活': '生活',
-                'btn-import-folder': '匯入資料夾', 'btn-export-folder': '匯出資料夾'},
+                'nav-logout': '退出登入', 'nav-delete': '註銷帳號', 'nav-history': '历史',
+                'theme-title': '主題模式', 'theme-light': '浅色模式', 'theme-dark': '深色模式', 'theme-sys': '跟随系统',
+                'lang-toggle': '切换语言 / EN',
+                'nav-sidebar': '侧栏', 'app-title': '云端笔记',
+                'btn-new-note': '新增筆記', 'btn-new-folder': '新增分類',
+                'btn-import-export': '匯入與匯出', 'label-folder': '文件夹',
+                'label-content': '内容展示', 'label-editor': '编辑栏',
+                'label-category': '归属地:', 'trash-title': '回收站',
+                'btn-list': '列表', 'btn-grid': '图表',
+                'all-docs': '全文档展示', 'no-data': '无数据', 'trash-empty': '回收站空空如也',
+                'untitled': '无标题', 'original-folder': '原位置:',
+                'fmt-size': '字号', 'sz-1': '极小', 'sz-2': '小号', 'sz-3': '正常', 'sz-4': '大号', 'sz-5': '特大', 'sz-6': '超大', 'sz-7': '极巨',
+                'fmt-heading': '标题', 'h1': '一级标题', 'h2': '二级标题', 'h3': '三级标题', 'p': '正文',
+                'color-white': '白', 'color-red': '红', 'color-yellow': '黄', 'color-blue': '蓝', 'color-green': '绿', 'color-black': '黑',
+                'fmt-img': '图', 'btn-recover': '恢复', 'btn-empty': '清空', 'ctx-rename': '重命名分类', 'ctx-delete': '安全删除分类',
+                '未分类': '未分类', '工作': '工作', '生活': '生活',
+                'btn-import-folder': '导入文件夹', 'btn-export-folder': '导出文件夹'
+            },
             en: {
                 'nav-logout': 'Logout', 'nav-delete': 'Delete Account', 'nav-history': 'History',
                 'theme-title': 'Theme Mode', 'theme-light': 'Light Mode', 'theme-dark': 'Dark Mode', 'theme-sys': 'System Default',
@@ -272,34 +338,41 @@
                 'nav-sidebar': 'Sidebar', 'app-title': 'Cloud Note',
                 'btn-new-note': 'New Note', 'btn-new-folder': 'New Folder',
                 'btn-import-export': 'Import/Export', 'label-folder': 'Folders',
-                'label-content': 'Content', 'label-editor': 'Editor','label-category': 'Category:', 'trash-title': 'Trash',
+                'label-content': 'Content', 'label-editor': 'Editor',
+                'label-category': 'Category:', 'trash-title': 'Trash',
                 'btn-list': 'List', 'btn-grid': 'Grid',
                 'all-docs': 'All Documents', 'no-data': 'No Data', 'trash-empty': 'Trash is empty',
                 'untitled': 'Untitled', 'original-folder': 'From:',
                 'fmt-size': 'Size', 'sz-1': 'Tiny', 'sz-2': 'Small', 'sz-3': 'Normal', 'sz-4': 'Large', 'sz-5': 'X-Large', 'sz-6': 'XXL', 'sz-7': 'Huge',
-                'fmt-heading': 'Heading', 'h1': 'Heading1', 'h2': 'Heading 2', 'h3': 'Heading 3', 'p': 'Normal Text',
+                'fmt-heading': 'Heading', 'h1': 'Heading 1', 'h2': 'Heading 2', 'h3': 'Heading 3', 'p': 'Normal Text',
                 'color-white': 'W', 'color-red': 'R', 'color-yellow': 'Y', 'color-blue': 'B', 'color-green': 'G', 'color-black': 'Bk',
-                'fmt-img': 'Img', 'btn-recover': 'Restore', 'btn-empty': 'Empty', 'ctx-rename': 'Rename', 'ctx-delete': 'Delete safely','未分類': 'Uncategorized', '工作': 'Work', '生活': 'Life',
+                'fmt-img': 'Img', 'btn-recover': 'Restore', 'btn-empty': 'Empty', 'ctx-rename': 'Rename', 'ctx-delete': 'Delete safely',
+                '未分类': 'Uncategorized', '工作': 'Work', '生活': 'Life',
                 'btn-import-folder': 'Import Folder', 'btn-export-folder': 'Export Folder'
-            }};
+            }
+        };
 
         let currentLang = localStorage.getItem('app-lang') || 'zh';
 
         function t(key) { return dict[currentLang][key] || key; }
 
-        function toggleLanguage() {currentLang = currentLang === 'zh' ? 'en' : 'zh';
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
             localStorage.setItem('app-lang', currentLang);
             updateLanguageUI();
             refreshAllViews(); 
-        }function updateLanguageUI() {
+        }
+
+        function updateLanguageUI() {
             const currentDict = dict[currentLang];
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (currentDict[key]) el.innerText = currentDict[key];});
+                if (currentDict[key]) el.innerText = currentDict[key];
+            });
         }
 
         // ==========================================
-        // 設定選單收納邏輯
+        // 設定菜单收纳逻辑
         // ==========================================
         function toggleSettingsMenu(e) {
             e.stopPropagation(); 
@@ -324,155 +397,175 @@
         }
 
         function applyTheme(theme) {
-            constisDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
             if (isDark) {
                 document.documentElement.classList.add('dark'); 
             } else {
-                document.documentElement.classList.remove('dark');}
+                document.documentElement.classList.remove('dark');
+            }
         }
 
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',() => {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
             if (localStorage.getItem('app-theme') === 'system' || !localStorage.getItem('app-theme')) {
                 applyTheme('system');
             }
         });
 
         // ==========================================
-        // 核心資料模型與同步應用邏輯
+        // 核心数据模型与同步应用逻辑
         // ==========================================
-        let notes = [];let trashBin = [];
-        let categories =[
-            { id: "未分類", name: "未分類", parentId: null },
+        let notes = [];
+        let trashBin = [];
+        let categories = [
+            { id: "未分类", name: "未分类", parentId: null },
             { id: "工作", name: "工作", parentId: null },
             { id: "生活", name: "生活", parentId: null }
         ];
-        letcategoryColors = { "未分類": "#64748b", "工作": "#3b82f6", "生活": "#10b981" };
-        let folderTreeRelations = {};let leftExpandedFolders = {}; 
+        let categoryColors = { "未分类": "#64748b", "工作": "#3b82f6", "生活": "#10b981" };
+        let folderTreeRelations = {}; 
+        let leftExpandedFolders = {}; 
         let currentFilterCategory = "全部"; 
         let activeNoteId = null;
         let saveTimeout = null;
-        let draggedNoteId = null; // 用於記錄當前正在拖曳的筆記ID
-        let isFolderSectionExpanded = true; // 記錄資料夾區域是否展開
-        let isContentSectionExpanded = true; // 記錄內容展示區域是否展開
+        let draggedNoteId = null; // 用于记录当前正在拖拽的笔记ID
+        let isFolderSectionExpanded = true; // 记录文件夹区域是否展开
+        let isContentSectionExpanded = true; // 记录内容展示区域是否展开
 
-        // 控制內容展示區域折疊/展開的函式
+        // 控制内容展示区域折叠/展开的函数
         function toggleContentSection() {
             isContentSectionExpanded = !isContentSectionExpanded;
             const container = document.getElementById('content-section-container');
-            const icon =document.getElementById('content-section-icon');
+            const icon = document.getElementById('content-section-icon');
             
-            if (isContentSectionExpanded) {container.classList.remove('hidden');
+            if (isContentSectionExpanded) {
+                container.classList.remove('hidden');
                 icon.classList.remove('-rotate-90');
-            }else {
+            } else {
                 container.classList.add('hidden');
                 icon.classList.add('-rotate-90');
             }
         }
 
-        // 控制資料夾區域折疊/展開的函式
+        // 控制文件夹区域折叠/展开的函数
         function toggleFolderSection() {
             isFolderSectionExpanded = !isFolderSectionExpanded;
             const container = document.getElementById('category-tree-container');
-            const icon = document.getElementById('folder-section-icon');if (isFolderSectionExpanded) {
+            const icon = document.getElementById('folder-section-icon');
+            if (isFolderSectionExpanded) {
                 container.classList.remove('hidden');
                 icon.classList.remove('-rotate-90');
             } else {
-                container.classList.add('hidden');icon.classList.add('-rotate-90');
+                container.classList.add('hidden');
+                icon.classList.add('-rotate-90');
             }
         }
         
-        letleftPanelClosed = false;
+        let leftPanelClosed = false;
         let rightPanelClosed = true;
         let treeLayoutView = "list"; 
         let leftLayoutView = "list";
-        let rightClickedCategoryId = null;let isLoginMode = true;
-        let cfUser = localStorage.getItem('cfUser');let cfPass = localStorage.getItem('cfPass');
+        let rightClickedCategoryId = null; 
+        
+        let isLoginMode = true;
+        let cfUser = localStorage.getItem('cfUser');
+        let cfPass = localStorage.getItem('cfPass');
         
         function toggleAuthMode() {
             isLoginMode = !isLoginMode;
-            document.getElementById('auth-title').innerText = isLoginMode ?'登入雲端工作台' : '註冊新帳號';
-            document.getElementById('auth-btn').innerText = isLoginMode ? '登入' : '立即註冊';
-            document.getElementById('auth-toggle').innerText = isLoginMode ? '沒有帳號？點擊註冊新帳號' :'已有帳號？點擊返回登入';
+            document.getElementById('auth-title').innerText = isLoginMode ? '登入云端工作台' : '註冊新账号';
+            document.getElementById('auth-btn').innerText = isLoginMode ? '登入' : '立即注册';
+            document.getElementById('auth-toggle').innerText = isLoginMode ? '没有账号？点击注册新账号' : '已有帳號？點擊返回登入';
             document.getElementById('auth-error').classList.add('hidden');
         }
         
         async function handleAuth() {
             const u = document.getElementById('auth-username').value;
-            const p = document.getElementById('auth-password').value;const errDiv = document.getElementById('auth-error');
-            if(!u || !p) { errDiv.innerText = "請輸入帳號和密碼"; errDiv.classList.remove('hidden'); return; }const endpoint = isLoginMode ? '/api/login' : '/api/register';
-            document.getElementById('auth-btn').innerText = "請稍候...";
+            const p = document.getElementById('auth-password').value;
+            const errDiv = document.getElementById('auth-error');
+            if(!u || !p) { errDiv.innerText = "请输入账号和密码"; errDiv.classList.remove('hidden'); return; }
+            const endpoint = isLoginMode ? '/api/login' : '/api/register';
+            document.getElementById('auth-btn').innerText = "请稍候...";
             
             try {
-                const res = awaitfetch(endpoint, {
+                const res = await fetch(endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username: u, password: p })
-                });const data = await res.json();
-                if(res.ok && data.success) {cfUser = u; cfPass = p;
+                });
+                const data = await res.json();
+                if(res.ok && data.success) {
+                    cfUser = u; cfPass = p;
                     localStorage.setItem('cfUser', u);
                     localStorage.setItem('cfPass', p);
-                    document.getElementById('auth-overlay').classList.add('hidden');loadCloudData();
+                    document.getElementById('auth-overlay').classList.add('hidden');
+                    loadCloudData();
                 } else {
-                    errDiv.innerText = data.message || "執行失敗，請檢查資料庫綁定";
+                    errDiv.innerText = data.message || "执行失败，请检查数据库绑定";
                     errDiv.classList.remove('hidden');
-                }} catch(e) {
-                alert("網路或程式碼錯誤: " + e.message);
-                errDiv.innerText = "網路請求失敗，請確保已綁定 KV 並重試部署";
+                }
+            } catch(e) {
+                alert("网络或代码错误: " + e.message);
+                errDiv.innerText = "网络请求失败，请确保已绑定KV并重试部署";
                 errDiv.classList.remove('hidden');
             }
-            document.getElementById('auth-btn').innerText = isLoginMode ? '登入' : '立即註冊';
+            document.getElementById('auth-btn').innerText = isLoginMode ? '登入' : '立即注册';
         }
 
         async function deleteAccount() {
             if(!cfUser) return;
-            const isConfirmed = confirm(`🚨 危險操作警告 🚨\n\n此操作將徹底銷毀您的帳號【${cfUser}】以及雲端所有的筆記資料！\n\n點擊“確定”立即註銷，點擊“取消”放棄。`);
+            const isConfirmed = confirm(`🚨 危险操作警告 🚨\n\n此操作将彻底销毁您的账号【${cfUser}】以及云端所有的笔记数据！\n\n点击“确定”立即注销，点击“取消”放弃。`);
             if (!isConfirmed) return;
 
             try {
-                constres = await fetch('/api/delete-account', {
+                const res = await fetch('/api/delete-account', {
                     method: 'POST',
                     headers: getAuthHeaders()
                 });
                 const data = await res.json();
-                if(res.ok &&data.success) {
-                    alert("銷毀成功：您的帳號及所有雲端資料已從伺服器徹底清除！");
+                if(res.ok && data.success) {
+                    alert("销毁成功：您的账号及所有云端数据已从服务器彻底清除！");
                     localStorage.removeItem('cfUser');
-                    localStorage.removeItem('cfPass');location.reload(); 
+                    localStorage.removeItem('cfPass');
+                    location.reload(); 
                 } else {
-                    alert("註銷失敗：" + (data.message || "未知錯誤"));
+                    alert("注销失败：" + (data.message || "未知错误"));
                 }
             } catch(e) {
-                alert("網路請求失敗：" + e.message);
+                alert("网络请求失败：" + e.message);
             }
         }
         
         function logout() {
-            localStorage.removeItem('cfUser');localStorage.removeItem('cfPass');
+            localStorage.removeItem('cfUser');
+            localStorage.removeItem('cfPass');
             location.reload();
         }
         
         function getAuthHeaders() {
             return {
                 'Authorization': 'Basic ' + btoa(unescape(encodeURIComponent(cfUser + ':' + cfPass))),
-                'Content-Type': 'application/json'};
+                'Content-Type': 'application/json'
+            };
         }
         
         window.addEventListener('DOMContentLoaded', () => {
-            if (window.innerWidth< 768) { toggleLeftPanel(); }
+            if (window.innerWidth < 768) { toggleLeftPanel(); }
             initResizers();
             initRichTextInteractiveEvents();
 
-            document.getElementById('note-title-input').addEventListener('keydown', function(e) {if (e.key === 'Enter') {
+            document.getElementById('note-title-input').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
                     e.preventDefault(); 
                     document.getElementById('note-editor-richtext').focus(); 
                 }
             });  
 
-            if (cfUser &&cfPass) {
+            if (cfUser && cfPass) {
                 document.getElementById('auth-overlay').classList.add('hidden');
                 loadCloudData();
             } else {
-                document.getElementById('auth-overlay').classList.remove('hidden');}
+                document.getElementById('auth-overlay').classList.remove('hidden');
+            }
 
             applyTheme(localStorage.getItem('app-theme') || 'system');
             updateLanguageUI();
@@ -481,26 +574,27 @@
         async function loadCloudData() {
             if (typeof marked !== 'undefined') marked.use({ breaks: true, gfm: true });
             try {
-                const response = awaitfetch('/api/sync', { headers: getAuthHeaders() });
+                const response = await fetch('/api/sync', { headers: getAuthHeaders() });
                 if (response.status === 401) { logout(); return; }
-                if (!response.ok) throw new Error('網路響應異常');
-                constdata = await response.json();
+                if (!response.ok) throw new Error('网络响应异常');
+                const data = await response.json();
                 if (data.notes) notes = data.notes;
-                if(data.categories) {
+                if (data.categories) {
                     if (data.categories.length > 0 && typeof data.categories[0] === 'string') {
-                        categories = data.categories.map(c => ({ id: c,name: c, parentId: null }));
+                        categories = data.categories.map(c => ({ id: c, name: c, parentId: null }));
                     } else {
-                        categories = data.categories;}
+                        categories = data.categories;
+                    }
                 }
                 if (data.categoryColors) categoryColors = data.categoryColors;
-                if(data.trashBin) trashBin = data.trashBin;
-                if (data.folderTreeRelations)folderTreeRelations = data.folderTreeRelations;
-                if (data.leftExpandedFolders) leftExpandedFolders =data.leftExpandedFolders;
+                if (data.trashBin) trashBin = data.trashBin;
+                if (data.folderTreeRelations) folderTreeRelations = data.folderTreeRelations;
+                if (data.leftExpandedFolders) leftExpandedFolders = data.leftExpandedFolders;
             } catch (error) {
-                console.log("資料拉取失敗或首次使用", error);
+                console.log("数据拉取失败或首次使用", error);
             }
             refreshAllViews();
-            if (notes.length >0) {
+            if (notes.length > 0) {
                 const sorted = [...notes].sort((a,b) => b.updatedAt - a.updatedAt);
                 openNote(sorted[0].id);
             } else {
@@ -512,9 +606,11 @@
             if(!cfUser) return;
             const allData = {
                 notes: notes,
-                categories: categories,categoryColors: categoryColors,
+                categories: categories,
+                categoryColors: categoryColors,
                 trashBin: trashBin,
-                folderTreeRelations: folderTreeRelations,leftExpandedFolders: leftExpandedFolders
+                folderTreeRelations: folderTreeRelations,
+                leftExpandedFolders: leftExpandedFolders
             };
             try {
                 await fetch('/api/sync', {
@@ -523,14 +619,18 @@
                     body: JSON.stringify(allData)
                 });
             } catch (error) {
-                console.error("儲存到雲端失敗", error);
+                console.error("保存到云端失败", error);
             }
         }
         
-        function refreshAllViews() {document.getElementById('view-tree-list').style.backgroundColor = treeLayoutView === 'list' ? '#3b82f6' : 'transparent';
-            document.getElementById('view-tree-grid').style.backgroundColor = treeLayoutView === 'grid' ? '#3b82f6' : 'transparent';document.getElementById('view-left-list').style.backgroundColor = leftLayoutView === 'list' ? '#3b82f6' : 'transparent';
-            document.getElementById('view-left-grid').style.backgroundColor = leftLayoutView === 'grid' ? '#3b82f6' : 'transparent';document.getElementById('view-left-list').style.color = leftLayoutView === 'list' ?'#ffffff' : '';
-            document.getElementById('view-left-grid').style.color = leftLayoutView=== 'grid' ? '#ffffff' : '';
+        function refreshAllViews() {
+            document.getElementById('view-tree-list').style.backgroundColor = treeLayoutView === 'list' ? '#3b82f6' : 'transparent';
+            document.getElementById('view-tree-grid').style.backgroundColor = treeLayoutView === 'grid' ? '#3b82f6' : 'transparent';
+            document.getElementById('view-left-list').style.backgroundColor = leftLayoutView === 'list' ? '#3b82f6' : 'transparent';
+            document.getElementById('view-left-grid').style.backgroundColor = leftLayoutView === 'grid' ? '#3b82f6' : 'transparent';
+            
+            document.getElementById('view-left-list').style.color = leftLayoutView === 'list' ? '#ffffff' : '';
+            document.getElementById('view-left-grid').style.color = leftLayoutView === 'grid' ? '#ffffff' : '';
 
             renderCategoryTree();
             renderCategorySelectOptions();
@@ -539,17 +639,19 @@
             document.getElementById('trash-count-badge').innerText = trashBin.length;
         }
         
-        function toggleTreeLayout(mode) { treeLayoutView = mode;saveCloudData(); refreshAllViews(); }
+        function toggleTreeLayout(mode) { treeLayoutView = mode; saveCloudData(); refreshAllViews(); }
         function toggleLeftView(mode) { leftLayoutView = mode; saveCloudData(); refreshAllViews(); }
 
         function getAllCategoryIds(rootId) {
-            letids = [rootId];
+            let ids = [rootId];
             function findChildren(pId) {
-                categories.filter(c =>c.parentId === pId).forEach(c => {
-                    ids.push(c.id);findChildren(c.id); 
+                categories.filter(c => c.parentId === pId).forEach(c => {
+                    ids.push(c.id);
+                    findChildren(c.id); 
                 });
             }
-            findChildren(rootId);return ids;
+            findChildren(rootId);
+            return ids;
         }
 
         function renderCategoryTree() {
@@ -557,11 +659,13 @@
             container.innerHTML = '';
             
             const allDocsContainer = document.getElementById('all-docs-container');
-            if(allDocsContainer) allDocsContainer.innerHTML = '';const activeStyle = 'bg-blue-500 text-white border-blue-600 shadow';
-            const defaultStyle = 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700shadow-sm';
+            if(allDocsContainer) allDocsContainer.innerHTML = '';
+
+            const activeStyle = 'bg-blue-500 text-white border-blue-600 shadow';
+            const defaultStyle = 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 shadow-sm';
 
             const allBtn = document.createElement('div');
-            allBtn.className =`px-3 py-1 rounded-lg border flex items-center gap-1 cursor-pointer transition-all text-xs font-black ${currentFilterCategory === '全部' ? activeStyle : defaultStyle}`;
+            allBtn.className = `px-3 py-1 rounded-lg border flex items-center gap-1 cursor-pointer transition-all text-xs font-black ${currentFilterCategory === '全部' ? activeStyle : defaultStyle}`;
             allBtn.innerHTML = `<i class="fa-solid fa-list-check text-[12px]"></i> ${t('all-docs')}`;
             allBtn.onclick = () => { currentFilterCategory = "全部"; refreshAllViews(); };
             
@@ -570,10 +674,10 @@
             }
 
             const treeRootWrapper = document.createElement('div');
-            treeRootWrapper.className = treeLayoutView === 'grid' ? "grid grid-cols-3 gap-1 w-full": "space-y-1 w-full";
+            treeRootWrapper.className = treeLayoutView === 'grid' ? "grid grid-cols-3 gap-1 w-full" : "space-y-1 w-full";
 
             function buildTreeNodes(parentId, level) {
-                const currentLevelNodes= categories.filter(c => c.parentId === parentId);
+                const currentLevelNodes = categories.filter(c => c.parentId === parentId);
                 
                 currentLevelNodes.forEach(cat => {
                     const isSelected = currentFilterCategory === cat.id;
@@ -581,37 +685,43 @@
                     const hasChildren = categories.some(c => c.parentId === cat.id);
                     
                     const allCatIds = getAllCategoryIds(cat.id);
-                    const noteCount = notes.filter(n => allCatIds.includes(n.category)).length;const cell = document.createElement('div');
-                    const cellClass = isSelected ? activeStyle : defaultStyle;let folderIconColor = 'text-amber-500'; 
-                    if (level=== 1) folderIconColor = 'text-blue-500'; 
-                    else if (level=== 2) folderIconColor = 'text-emerald-500'; 
-                    else if (level>= 3) folderIconColor = 'text-purple-500'; 
+                    const noteCount = notes.filter(n => allCatIds.includes(n.category)).length;
+                    
+                    const cell = document.createElement('div');
+                    const cellClass = isSelected ? activeStyle : defaultStyle;
+                    
+                    let folderIconColor = 'text-amber-500'; 
+                    if (level === 1) folderIconColor = 'text-blue-500'; 
+                    else if (level === 2) folderIconColor = 'text-emerald-500'; 
+                    else if (level >= 3) folderIconColor = 'text-purple-500'; 
                     
                     let iconHtml = `<i class="fa-solid fa-folder ${folderIconColor} text-[12px] shrink-0"></i>`;
                     if (hasChildren) {
                         iconHtml = isExpanded 
-                            ?`<i class="fa-solid fa-caret-down ${isSelected ? 'text-blue-100': 'text-slate-400 dark:text-slate-50'} text-[10px]w-3 shrink-0"></i><i class="fa-solid fa-folder-open ${folderIconColor} text-[12px] shrink-0"></i>`
-                            : `<i class="fa-solid fa-caret-right ${isSelected ? 'text-blue-100' : 'text-slate-400 dark:text-slate-50'} text-[10px] w-3 shrink-0"></i><i class="fa-solid fa-folder ${folderIconColor} text-[12px] shrink-0"></i>`;} else {
+                            ? `<i class="fa-solid fa-caret-down ${isSelected ? 'text-blue-100' : 'text-slate-400 dark:text-slate-500'} text-[10px] w-3 shrink-0"></i><i class="fa-solid fa-folder-open ${folderIconColor} text-[12px] shrink-0"></i>`
+                            : `<i class="fa-solid fa-caret-right ${isSelected ? 'text-blue-100' : 'text-slate-400 dark:text-slate-500'} text-[10px] w-3 shrink-0"></i><i class="fa-solid fa-folder ${folderIconColor} text-[12px] shrink-0"></i>`;
+                    } else {
                         iconHtml = `<span class="w-3 inline-block shrink-0"></span><i class="fa-solid fa-folder ${folderIconColor} text-[12px] shrink-0"></i>`;
                     }
 
                     if (treeLayoutView === 'grid') {
-                        cell.className =`p-1.5 rounded-lg border cursor-pointer transition-all flex flex-col justify-between relative h-9 ${cellClass}`;
+                        cell.className = `p-1.5 rounded-lg border cursor-pointer transition-all flex flex-col justify-between relative h-9 ${cellClass}`;
                         cell.innerHTML = `
                             <div class="truncate w-full pr-1">
                                 <div class="flex items-center gap-1.5 truncate">
                                     ${iconHtml}
                                     <span class="font-extrabold text-[12px] truncate">${t(cat.name)}</span>
                                 </div>
-                                <span class="text-[10px] block mt-0.5font-bold ${isSelected ? 'opacity-100 text-blue-100' : 'opacity-60'}">(${noteCount})</span>
+                                <span class="text-[10px] block mt-0.5 font-bold ${isSelected ? 'opacity-100 text-blue-100' : 'opacity-60'}">(${noteCount})</span>
                             </div>
                         `;
                     } else {
                         const paddingLeft = `${level * 12 + 6}px`;
-                        cell.className = `py-1px-1.5 rounded-lg border cursor-pointer transition-all flex items-center justify-between relative h-6 ${cellClass}`;
+                        cell.className = `py-1 px-1.5 rounded-lg border cursor-pointer transition-all flex items-center justify-between relative h-6 ${cellClass}`;
                         cell.style.paddingLeft = paddingLeft;
-                        cell.innerHTML =`
-                            <div class="flex items-center gap-1.5 truncate flex-1 pr-1">${iconHtml}
+                        cell.innerHTML = `
+                            <div class="flex items-center gap-1.5 truncate flex-1 pr-1">
+                                ${iconHtml}
                                 <span class="font-extrabold text-[12px] truncate">${t(cat.name)}</span>
                             </div>
                             <span class="text-[10px] font-bold ${isSelected ? 'opacity-100 text-blue-100' : 'opacity-60'} shrink-0">(${noteCount})</span>
@@ -619,70 +729,80 @@
                     }
 
                     cell.onclick = (e) => {
-                        if (e.target.closest('.fa-caret-down') ||e.target.closest('.fa-caret-right')) {
+                        if (e.target.closest('.fa-caret-down') || e.target.closest('.fa-caret-right')) {
                             leftExpandedFolders[cat.id] = !isExpanded;
                             saveCloudData();
                             refreshAllViews();
                         } else {
-                            currentFilterCategory =cat.id;
+                            currentFilterCategory = cat.id;
                             leftExpandedFolders[cat.id] = true; 
-                            saveCloudData();refreshAllViews();
+                            saveCloudData();
+                            refreshAllViews();
                         }
                     };
                    
-                    // --- 資料夾拖放接收邏輯---
-                    cell.classList.add('folder-drop-target'); 
-                    cell.ondragover =(e) => {
+                    // --- 新增：文件夹拖放接收逻辑 ---
+                    cell.classList.add('folder-drop-target'); // 打个标记，方便清理样式
+                    cell.ondragover = (e) => {
                         if (draggedNoteId) {
-                            e.preventDefault();cell.classList.add('bg-blue-100', 'dark:bg-blue-900','border-blue-400', 'border-dashed'); 
+                            e.preventDefault(); // 必须阻止默认行为，允许元素放入
+                            cell.classList.add('bg-blue-100', 'dark:bg-blue-900', 'border-blue-400', 'border-dashed'); // 移入时高亮变色
                         }
                     };
                     cell.ondragleave = (e) => {
                         cell.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'border-blue-400', 'border-dashed');
                     };
                     cell.ondrop = (e) => {
-                        e.preventDefault();cell.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'border-blue-400', 'border-dashed');
+                        e.preventDefault();
+                        cell.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'border-blue-400', 'border-dashed');
                         if (draggedNoteId) {
-                            const idx = notes.findIndex(n => n.id === draggedNoteId);if (idx !== -1 && notes[idx].category !== cat.id) {
+                            // 找到拖拽的笔记，修改它的 category
+                            const idx = notes.findIndex(n => n.id === draggedNoteId);
+                            if (idx !== -1 && notes[idx].category !== cat.id) {
                                 notes[idx].category = cat.id; 
                                 saveCloudData();
-                                refreshAllViews(); 
-                            }}
+                                refreshAllViews(); // 刷新视图，你会看到侧边栏数量和列表瞬间变化
+                            }
+                        }
                     };
+                    // -----------------------------
  
                     bindCategoryContextMenu(cell, cat.id);
                     treeRootWrapper.appendChild(cell);
 
                     if (hasChildren && isExpanded) {
-                        buildTreeNodes(cat.id, level +1);
+                        buildTreeNodes(cat.id, level + 1);
                     }
                 });
             }
 
-            buildTreeNodes(null, 0);container.appendChild(treeRootWrapper);
+            buildTreeNodes(null, 0);
+            container.appendChild(treeRootWrapper);
         }
         
-        function renderLeftNotesView() {const container = document.getElementById('left-notes-container'); container.innerHTML = '';
-            let displayNotes= notes;
+        function renderLeftNotesView() {
+            const container = document.getElementById('left-notes-container'); container.innerHTML = '';
+            let displayNotes = notes;
     
-            // 1. 先按分類目錄過濾
+            // 1. 先按分类目录过滤
             if (currentFilterCategory !== "全部") { 
                 const targetIds = getAllCategoryIds(currentFilterCategory);
                 displayNotes = notes.filter(n => targetIds.includes(n.category)); 
             }
 
-            // 2. 按搜尋框關鍵字過濾（同時搜尋標題和內容，忽略大小寫）
+            // 💡 2. 新增：按搜索框关键字过滤（同时搜索标题和内容，忽略大小写）
             const searchInput = document.getElementById('global-search-input');
             if (searchInput && searchInput.value.trim() !== '') {
                 const keyword = searchInput.value.trim().toLowerCase();
                 displayNotes = displayNotes.filter(n => {
                     const titleMatch = (n.title || '').toLowerCase().includes(keyword);
-                    const contentMatch = (n.content|| '').toLowerCase().includes(keyword);
+                    const contentMatch = (n.content || '').toLowerCase().includes(keyword);
                     return titleMatch || contentMatch;
                 });
             }
     
-            constsorted = displayNotes;
+            // 💡 改为直接使用数组的物理顺序，不再强制按时间排序，让拖拽排序生效
+            const sorted = displayNotes;
             if (sorted.length === 0) { container.innerHTML = `<p class="text-slate-400 text-center text-sm py-4 font-bold">${t('no-data')}</p>`; return; }
     
             const gridWrapper = document.createElement('div'); 
@@ -690,137 +810,171 @@
     
             sorted.forEach(note => {
                 const box = document.createElement('div');
-                const isSelected =note.id === activeNoteId;
+                const isSelected = note.id === activeNoteId;
                 box.onclick = (e) => { if (!e.target.closest('.del-btn')) openNote(note.id); };
         
-                const plainText = note.content ? note.content.replace(/<[^>]+>/g, '').substring(0, 15) : '...';const displayTitle = note.title || t('untitled'); 
+                const plainText = note.content ? note.content.replace(/<[^>]+>/g, '').substring(0, 15) : '...';
+                const displayTitle = note.title || t('untitled'); 
         
-                const defaultBoxStyle ='bg-white dark:bg-slate-800 border-emerald-400 dark:border-emerald-600 hover:bg-emerald-50 dark:hover:bg-slate-700shadow-sm';
+                const defaultBoxStyle = 'bg-white dark:bg-slate-800 border-emerald-400 dark:border-emerald-600 hover:bg-emerald-50 dark:hover:bg-slate-700 shadow-sm';
                 const activeBoxStyle = 'bg-blue-500 border-blue-600 text-white shadow active-note-item';
 
-                if (leftLayoutView === 'list') {box.className = `w-full py-1 px-2 rounded-lg border cursor-pointer flex flex-coljustify-between transition-all text-xs break-all relative group ${isSelected ? activeBoxStyle : defaultBoxStyle}`;
+                if (leftLayoutView === 'list') {
+                    box.className = `w-full py-1 px-2 rounded-lg border cursor-pointer flex flex-col justify-between transition-all text-xs break-all relative group ${isSelected ? activeBoxStyle : defaultBoxStyle}`;
                     box.innerHTML = `
-                        <button class="del-btn absolute right-1 top-1p-0.5 ${isSelected ? 'text-white hover:text-red-200' : 'text-red-500 hover:text-red-700'} transition-all z-10" onclick="confirmDelete(event, '${note.id}')"><i class="fa-solid fa-trash-can text-[12px]"></i></button>
-                        <div class="w-full overflow-hidden flexflex-col flex-1 pr-4 justify-center">
+                        <button class="del-btn absolute right-1 top-1 p-0.5 ${isSelected ? 'text-white hover:text-red-200' : 'text-red-500 hover:text-red-700'} transition-all z-10" onclick="confirmDelete(event, '${note.id}')"><i class="fa-solid fa-trash-can text-[12px]"></i></button>
+                        <div class="w-full overflow-hidden flex flex-col flex-1 pr-4 justify-center">
                             <div class="font-black text-[14px] ${isSelected ? 'text-white' : 'text-slate-900 dark:text-slate-100'} line-clamp-1 leading-snug mb-0" title="${displayTitle}">${displayTitle}</div>
-                            <p class="text-[12px] ${isSelected ? 'text-blue-100' : 'text-slate-500 dark:text-slate-400'}line-clamp-1 leading-none">${plainText}</p>
+                            <p class="text-[12px] ${isSelected ? 'text-blue-100' : 'text-slate-500 dark:text-slate-400'} line-clamp-1 leading-none">${plainText}</p>
                         </div>
                     `;
-                } else{
-                    box.className = `w-full h-[72px] p-1.5 rounded-lg border cursor-pointerflex flex-col justify-between transition-all text-xs break-all relative group ${isSelected ? activeBoxStyle: defaultBoxStyle}`;
+                } else {
+                    box.className = `w-full h-[72px] p-1.5 rounded-lg border cursor-pointer flex flex-col justify-between transition-all text-xs break-all relative group ${isSelected ? activeBoxStyle : defaultBoxStyle}`;
                     box.innerHTML = `
-                        <button class="del-btn absolute right-1 top-1 p-0.5 ${isSelected ? 'text-white hover:text-red-200' : 'text-red-500 hover:text-red-700'} transition-all z-10"onclick="confirmDelete(event, '${note.id}')"><i class="fa-solid fa-trash-cantext-[11px]"></i></button>
+                        <button class="del-btn absolute right-1 top-1 p-0.5 ${isSelected ? 'text-white hover:text-red-200' : 'text-red-500 hover:text-red-700'} transition-all z-10" onclick="confirmDelete(event, '${note.id}')"><i class="fa-solid fa-trash-can text-[11px]"></i></button>
                         <div class="w-full overflow-hidden flex flex-col flex-1 justify-center">
-                            <div class="font-black text-[12px]${isSelected ? 'text-white' : 'text-slate-950 dark:text-slate-50'} line-clamp-1 leading-tight mb-1" title="${displayTitle}">${displayTitle}</div>
+                            <div class="font-black text-[12px] ${isSelected ? 'text-white' : 'text-slate-950 dark:text-slate-50'} line-clamp-1 leading-tight mb-1" title="${displayTitle}">${displayTitle}</div>
                             <p class="text-[10px] ${isSelected ? 'text-blue-100' : 'text-slate-500 dark:text-slate-400'} line-clamp-2 leading-tight">${plainText}</p>
                         </div>
                     `;
                 }
 
-                // --- 筆記拖曳與排序邏輯 ---
+                // --- 新增：笔记拖拽与排序逻辑 ---
                 box.draggable = true;
                 
-                box.ondragstart = (e) =>{
+                // 开始拖拽：记录ID，变半透明
+                box.ondragstart = (e) => {
                     draggedNoteId = note.id;
                     e.dataTransfer.effectAllowed = 'move';
                     setTimeout(() => box.classList.add('opacity-40', 'scale-95'), 0);
-                };box.ondragend = (e) => {
-                    draggedNoteId = null;box.classList.remove('opacity-40', 'scale-95');
+                };
+                
+                // 拖拽结束：清理样式
+                box.ondragend = (e) => {
+                    draggedNoteId = null;
+                    box.classList.remove('opacity-40', 'scale-95');
                     document.querySelectorAll('.folder-drop-target').forEach(el => el.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'border-blue-400', 'border-dashed'));
                 };
                 
+                // 拖拽悬停在其他笔记上方：显示蓝色的顶部边框作为插入提示
                 box.ondragover = (e) => {
                     if (draggedNoteId && draggedNoteId !== note.id) {
                         e.preventDefault(); 
                         box.classList.add('border-t-2', 'border-blue-500'); 
-                    }};
+                    }
+                };
                 box.ondragleave = (e) => {
                     box.classList.remove('border-t-2', 'border-blue-500');
                 };
                 
+                // 松开鼠标：执行位置互换
                 box.ondrop = (e) => {
                     e.preventDefault();
                     box.classList.remove('border-t-2', 'border-blue-500');
                     if (draggedNoteId && draggedNoteId !== note.id) {
                         const fromIdx = notes.findIndex(n => n.id === draggedNoteId);
-                        const toIdx = notes.findIndex(n => n.id === note.id);if (fromIdx !== -1 && toIdx !== -1) {
-                            const [movedItem] =notes.splice(fromIdx, 1);
+                        const toIdx = notes.findIndex(n => n.id === note.id);
+                        if (fromIdx !== -1 && toIdx !== -1) {
+                            // 从原位置抽离，并插入到目标位置
+                            const [movedItem] = notes.splice(fromIdx, 1);
                             const newToIdx = notes.findIndex(n => n.id === note.id);
                             notes.splice(newToIdx, 0, movedItem);
-                            saveCloudData();renderLeftNotesView();
+                            saveCloudData();
+                            renderLeftNotesView();
                         }
                     }
                 };
+                // -----------------------------
                 gridWrapper.appendChild(box);
             });
             container.appendChild(gridWrapper);
         }
         
         function renderTrashBin() {
-            const container = document.getElementById('right-trash-flow'); container.innerHTML = '';if (rightPanelClosed) return;
-            if (trashBin.length === 0) {container.innerHTML = `<p class="text-center py-8 text-slate-400 text-smfont-bold flex flex-col items-center gap-2"><i class="fa-solid fa-wind text-2xl"></i> ${t('trash-empty')}</p>`; 
+            const container = document.getElementById('right-trash-flow'); container.innerHTML = '';
+            if (rightPanelClosed) return;
+            if (trashBin.length === 0) { 
+                container.innerHTML = `<p class="text-center py-8 text-slate-400 text-sm font-bold flex flex-col items-center gap-2"><i class="fa-solid fa-wind text-2xl"></i> ${t('trash-empty')}</p>`; 
                 return; 
             }
             trashBin.forEach((note) => {
-                const card = document.createElement('div'); card.className = "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-3 rounded-xl relative group text-xs shadow-sm hover:shadow transition-all mb-2";const catObj = categories.find(c => c.id === note.category) || {name:'未分類'};
+                const card = document.createElement('div'); card.className = "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-3 rounded-xl relative group text-xs shadow-sm hover:shadow transition-all mb-2";
+                const catObj = categories.find(c => c.id === note.category) || {name: '未分类'};
                 const displayTitle = note.title || t('untitled');
-                card.innerHTML =`
+                card.innerHTML = `
                     <div class="pr-16 truncate">
                         <div class="font-bold text-slate-900 dark:text-slate-100 truncate mb-1 text-sm">${displayTitle}</div>
                         <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium block flex items-center gap-1"><i class="fa-solid fa-folder-open text-slate-400"></i> ${t('original-folder')} ${t(catObj.name)}</span>
                     </div>
                     <div class="absolute right-2 top-2 flex gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity">
-                        <buttononclick="recoverDeletedFile('${note.id}')" title="復原" class="p-1.5 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 rounded-lg text-emerald-600 dark:text-emerald-400 font-bold"><i class="fa-solid fa-rotate-left"></i></button><button onclick="permanentlyDeleteFile('${note.id}')" title="徹底刪除" class="p-1.5 bg-red-50 dark:bg-red-900/30 borderborder-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400"><i class="fa-solid fa-xmark"></i></button>
+                        <button onclick="recoverDeletedFile('${note.id}')" title="恢复" class="p-1.5 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 rounded-lg text-emerald-600 dark:text-emerald-400 font-bold"><i class="fa-solid fa-rotate-left"></i></button>
+                        <button onclick="permanentlyDeleteFile('${note.id}')" title="彻底删除" class="p-1.5 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 `;
                 container.appendChild(card);
             });
-        }function createNewNote() {
-            const defaultCat = currentFilterCategory !== "全部" ? currentFilterCategory : "未分類";
-            const newDoc = { id: 'md_' + Date.now(),title: '', content: '', category: defaultCat, updatedAt: Date.now() };
-            notes.unshift(newDoc);saveCloudData(); openNote(newDoc.id);
+        }
+        
+        function createNewNote() {
+            const defaultCat = currentFilterCategory !== "全部" ? currentFilterCategory : "未分类";
+            const newDoc = { id: 'md_' + Date.now(), title: '', content: '', category: defaultCat, updatedAt: Date.now() };
+            // 💡 改用 unshift，让新插入的笔记永远排在数组最顶端（第一位）
+            notes.unshift(newDoc); 
+            saveCloudData(); openNote(newDoc.id);
         }
         
         function openNote(id) {
-            activeNoteId = id; const target = notes.find(n =>n.id === id);
+            activeNoteId = id; const target = notes.find(n => n.id === id);
             if (target) {
-                document.getElementById('note-title-input').value =target.title;
-                document.getElementById('note-editor-richtext').innerHTML = target.content;refreshAllViews(); 
-                document.getElementById('note-category-select').value = target.category ||"未分類";
+                document.getElementById('note-title-input').value = target.title;
+                document.getElementById('note-editor-richtext').innerHTML = target.content;
+                refreshAllViews(); 
+                document.getElementById('note-category-select').value = target.category || "未分类";
             }
         }
         
-        function confirmDelete(event, id) {event.stopPropagation();
-            const isConfirmed = confirm("🚨 確定要將這條筆記移入垃圾桶嗎？");
+        // 💡 新增的删除拦截确认函数
+        function confirmDelete(event, id) {
+            // 阻止冒泡，防止触发外层 div 的点击打开笔记事件
+            event.stopPropagation();
+            
+            // 弹出确认框
+            const isConfirmed = confirm("🚨 确定要将这条笔记移入回收站吗？");
+            
+            // 只有点击确定，才执行原有的删除逻辑
             if (isConfirmed) {
                 deleteNote(id);
-            }}
+            }
+        }
 
         function deleteNote(id) {
             const idx = notes.findIndex(n => n.id === id); 
             if (idx !== -1) {
-                trashBin.push(notes.splice(idx,1)[0]); saveCloudData();
-                if (activeNoteId === id) { if (notes.length> 0) openNote(notes[0].id); else createNewNote(); } else { refreshAllViews(); }
+                trashBin.push(notes.splice(idx, 1)[0]); saveCloudData();
+                if (activeNoteId === id) { if (notes.length > 0) openNote(notes[0].id); else createNewNote(); } else { refreshAllViews(); }
             }
         }
         
-        function changeNoteCategory(newCatId) { const idx= notes.findIndex(n => n.id === activeNoteId); if (idx !== -1) { notes[idx].category = newCatId; saveCloudData(); refreshAllViews(); } }
+        function changeNoteCategory(newCatId) { const idx = notes.findIndex(n => n.id === activeNoteId); if (idx !== -1) { notes[idx].category = newCatId; saveCloudData(); refreshAllViews(); } }
         
         function handleEditorInput() { 
             if (!activeNoteId) return; if (saveTimeout) clearTimeout(saveTimeout);
             saveTimeout = setTimeout(() => {
                 const idx = notes.findIndex(n => n.id === activeNoteId);
                 if (idx !== -1) {
-                    notes[idx].title =document.getElementById('note-title-input').value;
+                    notes[idx].title = document.getElementById('note-title-input').value;
                     notes[idx].content = document.getElementById('note-editor-richtext').innerHTML;
-                    notes[idx].updatedAt = Date.now();saveCloudData(); renderLeftNotesView(); 
+                    notes[idx].updatedAt = Date.now(); 
+                    saveCloudData(); renderLeftNotesView(); 
                 }
-            }, 1500);}
+            }, 1500); 
+        }
         
         function bindCategoryContextMenu(element, catId) {
             element.oncontextmenu = (e) => {
-                e.preventDefault(); e.stopPropagation(); rightClickedCategoryId = catId;const menu = document.getElementById('custom-context-menu');
-                menu.classList.remove('hidden'); menu.style.left = e.clientX + 'px'; menu.style.top = e.clientY +'px';
+                e.preventDefault(); e.stopPropagation(); rightClickedCategoryId = catId;
+                const menu = document.getElementById('custom-context-menu');
+                menu.classList.remove('hidden'); menu.style.left = e.clientX + 'px'; menu.style.top = e.clientY + 'px';
             };
         }
         
@@ -829,17 +983,22 @@
             const catObj = categories.find(c => c.id === rightClickedCategoryId);
             if(!catObj) return;
             const name = prompt(`${t('ctx-rename')} 【${catObj.name}】:`, catObj.name);
-            if (!name || name.trim() === "") return;catObj.name = name.trim();
+            if (!name || name.trim() === "") return;
+            catObj.name = name.trim();
             saveCloudData(); refreshAllViews();
-        }function handleContextMenuDelete() {
-            if (!rightClickedCategoryId || rightClickedCategoryId === "未分類") return;
-            const catObj = categories.find(c => c.id === rightClickedCategoryId);if(!catObj) return;
-            if (confirm(`確定刪除分類目錄【${catObj.name}】？其內部子目錄及所屬筆記都將全部進入垃圾桶。`)) {
-                let idsToDelete =[rightClickedCategoryId];
+        }
+        
+        function handleContextMenuDelete() {
+            if (!rightClickedCategoryId || rightClickedCategoryId === "未分类") return;
+            const catObj = categories.find(c => c.id === rightClickedCategoryId);
+            if(!catObj) return;
+            if (confirm(`确定删除分类目录【${catObj.name}】？其内部子目录及所属笔记都将全部进入回收站。`)) {
+                let idsToDelete = [rightClickedCategoryId];
                 function findSubIds(pId) {
-                    categories.forEach(c =>{
+                    categories.forEach(c => {
                         if(c.parentId === pId) {
-                            idsToDelete.push(c.id);findSubIds(c.id);
+                            idsToDelete.push(c.id);
+                            findSubIds(c.id);
                         }
                     });
                 }
@@ -847,7 +1006,7 @@
 
                 const toDeleteNotes = notes.filter(n => idsToDelete.includes(n.category));
                 trashBin.push(...toDeleteNotes);
-                notes = notes.filter(n =>!idsToDelete.includes(n.category));
+                notes = notes.filter(n => !idsToDelete.includes(n.category));
 
                 categories = categories.filter(c => !idsToDelete.includes(c.id));
                 if (idsToDelete.includes(currentFilterCategory)) currentFilterCategory = "全部";
@@ -856,31 +1015,36 @@
         }
         
         function createNewCategory() {
-            const name = prompt("創建全新分類資料夾名稱：");
-            if (!name|| name.trim() === "") return;
+            const name = prompt("创建全新分类文件夹名称：");
+            if (!name || name.trim() === "") return;
             
             let parentId = null;
             if (currentFilterCategory !== "全部") {
                 parentId = currentFilterCategory;
             } else {
-                const wantParent = confirm("需要將此新資料夾作為當前高亮目錄下級子資料夾嗎？")
+                const wantParent = confirm("需要将此新文件夹作为当前高亮目录下级子文件夹吗？")
                 if(wantParent && activeNoteId) {
-                    const currentNote = notes.find(n => n.id === activeNoteId);if(currentNote) parentId = currentNote.category;
+                    const currentNote = notes.find(n => n.id === activeNoteId);
+                    if(currentNote) parentId = currentNote.category;
                 }
             }
 
             const newId = 'cat_' + Date.now();
             categories.push({ id: newId, name: name.trim(), parentId: parentId });
             saveCloudData(); refreshAllViews();
-        }function renderCategorySelectOptions() {
-            const select = document.getElementById('note-category-select');select.innerHTML = '';
+        }
+        
+        function renderCategorySelectOptions() {
+            const select = document.getElementById('note-category-select'); select.innerHTML = '';
             
             function appendOption(parentId, depth) {
-                const layerNodes =categories.filter(c => c.parentId === parentId);
-                layerNodes.forEach(cat => {const opt = document.createElement('option');
-                    opt.value = cat.id;
+                const layerNodes = categories.filter(c => c.parentId === parentId);
+                layerNodes.forEach(cat => {
+                    const opt = document.createElement('option');
+                    opt.value = opt.value = cat.id;
                     opt.innerHTML = '—'.repeat(depth) + ' ' + t(cat.name);
-                    select.appendChild(opt);appendOption(cat.id, depth + 1); 
+                    select.appendChild(opt);
+                    appendOption(cat.id, depth + 1); 
                 });
             }
             appendOption(null, 0);
@@ -888,74 +1052,88 @@
         
         function recoverAllTrash() {
             if (trashBin.length === 0) return;
-            if (confirm("確定要復原全部垃圾桶文件嗎？")) {notes.push(...trashBin); trashBin = []; saveCloudData(); refreshAllViews();
-            }}
+            if (confirm("确定要恢复全部回收站文档吗？")) {
+                notes.push(...trashBin); trashBin = []; saveCloudData(); refreshAllViews();
+            }
+        }
         
         function clearTrashCompletely() { 
-            if (trashBin.length ===0) return;
-            if (confirm("警告：不可挽回！確定清空垃圾桶嗎？")){ trashBin = []; saveCloudData(); refreshAllViews(); } 
+            if (trashBin.length === 0) return;
+            if (confirm("警告：不可挽回！确定清空回收站吗？")) { trashBin = []; saveCloudData(); refreshAllViews(); } 
         }
         
         function recoverDeletedFile(id) { 
             const idx = trashBin.findIndex(t => t.id === id); 
-            if (idx !== -1) { notes.push(trashBin.splice(idx,1)[0]); saveCloudData(); refreshAllViews(); } 
+            if (idx !== -1) { notes.push(trashBin.splice(idx, 1)[0]); saveCloudData(); refreshAllViews(); } 
         }
         
         function permanentlyDeleteFile(id) { 
-            if (confirm("永久粉碎不可挽回，是否繼續？")) {trashBin = trashBin.filter(t => t.id !== id); saveCloudData(); refreshAllViews();} 
+            if (confirm("永久粉碎不可挽回，是否继续？")) { trashBin = trashBin.filter(t => t.id !== id); saveCloudData(); refreshAllViews(); } 
         }
         
-        function toggleLeftPanel() { leftPanelClosed = !leftPanelClosed;document.getElementById('left-panel').classList.toggle('hidden', leftPanelClosed); document.getElementById('resizer-left').classList.toggle('hidden', leftPanelClosed); }
+        function toggleLeftPanel() { leftPanelClosed = !leftPanelClosed; document.getElementById('left-panel').classList.toggle('hidden', leftPanelClosed); document.getElementById('resizer-left').classList.toggle('hidden', leftPanelClosed); }
         function toggleRightPanel() { rightPanelClosed = !rightPanelClosed; document.getElementById('right-panel').classList.toggle('hidden', rightPanelClosed); refreshAllViews(); }
         
         function initResizers() {
             const container = document.getElementById('workspace-container'); 
-            const leftPanel = document.getElementById('left-panel'); const resizerLeft= document.getElementById('resizer-left');
-            const rightPanel = document.getElementById('right-panel');const resizerRight = document.getElementById('resizer-right');
-            resizerLeft.addEventListener('mousedown',function(e) { e.preventDefault(); resizerLeft.classList.add('resizing'); document.body.classList.add('no-select'); document.addEventListener('mousemove', resizeLeft); document.addEventListener('mouseup', stopResizeLeft); });
+            const leftPanel = document.getElementById('left-panel'); const resizerLeft = document.getElementById('resizer-left');
+            const rightPanel = document.getElementById('right-panel'); const resizerRight = document.getElementById('resizer-right');
+            resizerLeft.addEventListener('mousedown', function(e) { e.preventDefault(); resizerLeft.classList.add('resizing'); document.body.classList.add('no-select'); document.addEventListener('mousemove', resizeLeft); document.addEventListener('mouseup', stopResizeLeft); });
             function resizeLeft(e) { let newWidth = e.clientX - container.getBoundingClientRect().left; if (newWidth >= 160 && newWidth <= 480) leftPanel.style.width = newWidth + 'px'; }
             function stopResizeLeft() { resizerLeft.classList.remove('resizing'); document.body.classList.remove('no-select'); document.removeEventListener('mousemove', resizeLeft); document.removeEventListener('mouseup', stopResizeLeft); }
             
             resizerRight.addEventListener('mousedown', function(e) { e.preventDefault(); resizerRight.classList.add('resizing'); document.body.classList.add('no-select'); document.addEventListener('mousemove', resizeRight); document.addEventListener('mouseup', stopResizeRight); });
             function resizeRight(e) { let newWidth = container.getBoundingClientRect().right - e.clientX; if (newWidth >= 270 && newWidth <= 480) rightPanel.style.width = newWidth + 'px'; }
-            function stopResizeRight(){ resizerRight.classList.remove('resizing'); document.body.classList.remove('no-select');document.removeEventListener('mousemove', resizeRight); document.removeEventListener('mouseup', stopResizeRight); }}
+            function stopResizeRight() { resizerRight.classList.remove('resizing'); document.body.classList.remove('no-select'); document.removeEventListener('mousemove', resizeRight); document.removeEventListener('mouseup', stopResizeRight); }
+        }
 
         function initRichTextInteractiveEvents() {
-               const editor = document.getElementById('note-editor-richtext');editor.addEventListener('click', (e) => { if (e.target.tagName === 'A'&& (e.ctrlKey || e.metaKey)) window.open(e.target.href, '_blank'); });
+               const editor = document.getElementById('note-editor-richtext');
+               editor.addEventListener('click', (e) => { if (e.target.tagName === 'A' && (e.ctrlKey || e.metaKey)) window.open(e.target.href, '_blank'); });
     
                let activeImage = null;
                let startY = 0;
-               letstartHeight = 0;
+               let startHeight = 0;
 
               const getClientY = (e) => {
-                     return e.touches? e.touches[0].clientY : e.clientY;
+                     return e.touches ? e.touches[0].clientY : e.clientY;
               };
 
-              const startResize = (e) => {if (e.target.tagName === 'IMG') {
+              const startResize = (e) => {
+                     if (e.target.tagName === 'IMG') {
                          if(e.touches) { e.stopPropagation(); } 
                          else { e.preventDefault(); }
             
-                         activeImage = e.target;startY = getClientY(e);
-                         startHeight = activeImage.clientHeight || activeImage.offsetHeight;if (!e.touches) document.body.style.cursor = 'ns-resize';if (e.touches) {
-                             document.addEventListener('touchmove', resizeImg, { passive: false});
+                         activeImage = e.target;
+                         startY = getClientY(e);
+                         startHeight = activeImage.clientHeight || activeImage.offsetHeight;
+            
+                         if (!e.touches) document.body.style.cursor = 'ns-resize'; 
+            
+                         if (e.touches) {
+                             document.addEventListener('touchmove', resizeImg, { passive: false });
                              document.addEventListener('touchend', stopResizeImg);
                          } else {
                               document.addEventListener('mousemove', resizeImg);
                               document.addEventListener('mouseup', stopResizeImg);
                          }
-                    }};
+                    }
+              };
 
               editor.addEventListener('mousedown', startResize);
-              editor.addEventListener('touchstart', startResize, { passive:false });
+              editor.addEventListener('touchstart', startResize, { passive: false });
 
               function resizeImg(e) {
                      if (activeImage) {
                          if (e.touches) {
                              if (e.cancelable) e.preventDefault(); 
-                         }const dy = getClientY(e) - startY;
+                         }
+            
+                         const dy = getClientY(e) - startY;
                          activeImage.style.height = (startHeight + dy) + 'px';
                          activeImage.style.width = 'auto';
-                     }}
+                     }
+               }
 
                function stopResizeImg() {
                       activeImage = null;
@@ -963,25 +1141,29 @@
         
                        document.removeEventListener('mousemove', resizeImg);
                        document.removeEventListener('mouseup', stopResizeImg);
-                       document.removeEventListener('touchmove', resizeImg);document.removeEventListener('touchend', stopResizeImg);
+                       document.removeEventListener('touchmove', resizeImg);
+                       document.removeEventListener('touchend', stopResizeImg);
         
-                       handleEditorInput();}
+                       handleEditorInput(); 
+               }
 
                editor.addEventListener('paste', (e) => {
-                     const items = (e.clipboardData|| window.clipboardData).items;
-                     for (let i = 0; i < items.length;i++) {
-                           if (items[i].type.indexOf("image") !== -1) {e.preventDefault(); const reader = new FileReader();
+                     const items = (e.clipboardData || window.clipboardData).items;
+                     for (let i = 0; i < items.length; i++) {
+                           if (items[i].type.indexOf("image") !== -1) {
+                               e.preventDefault(); const reader = new FileReader();
                                reader.onload = (event) => execCmd('insertImage', event.target.result);
-                               reader.readAsDataURL(items[i].getAsFile());}
+                               reader.readAsDataURL(items[i].getAsFile());
+                           }
                      }
                 });
          }
      
-        function insertHyperlink() { const url = prompt("請輸入超連結網址:", "https://"); if (url) execCmd('createLink', url); }
-        function insertImageUrl() { const url = prompt("請輸入網路圖片網址:", "https://"); if (url)execCmd('insertImage', url); }
+        function insertHyperlink() { const url = prompt("请输入超级链接地址:", "https://"); if (url) execCmd('createLink', url); }
+        function insertImageUrl() { const url = prompt("请输入网络图片地址:", "https://"); if (url) execCmd('insertImage', url); }
         function execCmd(command, value = null) { document.execCommand(command, false, value); handleEditorInput(); }
         function wrapHTML(startTag, endTag) { const selection = window.getSelection(); if (!selection.rangeCount) return; execCmd('insertHTML', startTag + selection.toString() + endTag); }
-        function triggerImport(type) { if(type === 'md') document.getElementById('import-md-input').click(); if (type === 'txt') document.getElementById('import-txt-input').click(); }
+        function triggerImport(type) { if (type === 'md') document.getElementById('import-md-input').click(); if (type === 'txt') document.getElementById('import-txt-input').click(); }
         function triggerFolderImport() { document.getElementById('import-folder-input').click(); }
         
         // ==========================================
