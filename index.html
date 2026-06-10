@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,13 +24,13 @@
         .panel-large-text { font-size: 16px !important; font-weight: 800 !important; }
         .sync-btn-font { font-size: 14px !important; font-weight: 900 !important; }
         
-        /* 💡 去掉了標題下划线 border-bottom */
+        /* 💡 去掉了標題下劃線 border-bottom */
         .md-preview h1 { font-size: 2.6rem; font-weight: 800; padding-bottom: 0.3em; margin-top: 1.6rem; margin-bottom: 1rem; }
         .md-preview h2 { font-size: 2.1rem; font-weight: 700; padding-bottom: 0.3em; margin-top: 1.4rem; margin-bottom: 0.8rem; }
         .md-preview h3 { font-size: 1.8rem; font-weight: 600; margin-top: 1.2rem; margin-bottom: 0.6rem; }
         .md-preview p, .md-preview div { margin-bottom: 0.3rem; line-height: 1.3; font-size: 18px; }
         
-        /* 💡 重新唤醒 Tailwind 默认屏蔽的列表样式 */
+        /* 💡 重新喚醒 Tailwind 默認屏蔽的列表樣式 */
         .md-preview ul { list-style-type: disc !important; margin-left: 1.5rem !important; padding-left: 0.5rem; margin-bottom: 0.5rem; }
         .md-preview ol { list-style-type: decimal !important; margin-left: 1.5rem !important; padding-left: 0.5rem; margin-bottom: 0.5rem; }
         .md-preview li { display: list-item !important; margin-bottom: 0.25rem; }
@@ -237,35 +237,35 @@
                 <div id="editor-format-bar" class="flex items-center gap-1 flex-wrap bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1.5 rounded-lg shadow-inner">
                     <select onchange="if(this.value){execCmd('fontSize', this.value);}" class="px-1.5 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 outline-none cursor-pointer bg-slate-50 dark:bg-slate-700">
                         <option value="" data-i18n="fmt-size">字號</option>
-                        <option value="1" data-i18n="sz-1">极小</option>
-                        <option value="2" data-i18n="sz-2">小号</option>
+                        <option value="1" data-i18n="sz-1">極小</option>
+                        <option value="2" data-i18n="sz-2">小號</option>
                         <option value="3" data-i18n="sz-3">正常</option>
-                        <option value="4" data-i18n="sz-4">大号</option>
+                        <option value="4" data-i18n="sz-4">大號</option>
                         <option value="5" data-i18n="sz-5">特大</option>
                         <option value="6" data-i18n="sz-6">超大</option>
-                        <option value="7" data-i18n="sz-7">极巨</option>
+                        <option value="7" data-i18n="sz-7">極巨</option>
                     </select>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
 
                     <select onchange="if(this.value){execCmd('formatBlock', this.value);}" class="px-1.5 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 outline-none cursor-pointer bg-slate-50 dark:bg-slate-700">
-                        <option value="" data-i18n="fmt-heading">标题</option>
-                        <option value="H1" data-i18n="h1">一级标题</option>
-                        <option value="H2" data-i18n="h2">二级标题</option>
-                        <option value="H3" data-i18n="h3">三级标题</option>
+                        <option value="" data-i18n="fmt-heading">標題</option>
+                        <option value="H1" data-i18n="h1">一級標題</option>
+                        <option value="H2" data-i18n="h2">二級標題</option>
+                        <option value="H3" data-i18n="h3">三級標題</option>
                         <option value="P" data-i18n="p">正文</option>
                     </select>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
                     
-                    <button onmousedown="event.preventDefault();" onclick="execCmd('insertUnorderedList')" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600" title="无序列表"><i class="fa-solid fa-list-ul"></i></button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('insertUnorderedList')" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600" title="無序列表"><i class="fa-solid fa-list-ul"></i></button>
                     <button onmousedown="event.preventDefault();" onclick="execCmd('insertOrderedList')" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600" title="有序列表"><i class="fa-solid fa-list-ol"></i></button>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
     
                     <button onmousedown="event.preventDefault();" onclick="execCmd('bold')" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded border border-slate-200 dark:border-slate-600"><i class="fa-solid fa-bold"></i></button>
     
-                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#ef4444')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #ef4444;" data-i18n="color-red">红</button>
-                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#eab308')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #eab308;" data-i18n="color-yellow">黄</button>
-                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#3b82f6')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #3b82f6;" data-i18n="color-blue">蓝</button>
-                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#22c55e')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #22c55e;" data-i18n="color-green">绿</button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#ef4444')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #ef4444;" data-i18n="color-red">紅</button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#eab308')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #eab308;" data-i18n="color-yellow">黃</button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#3b82f6')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #3b82f6;" data-i18n="color-blue">藍</button>
+                    <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#22c55e')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #22c55e;" data-i18n="color-green">綠</button>
                     <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#000000')" class="px-1.5 py-0.5 text-[11px] font-bold text-white hover:opacity-80 rounded shadow-sm" style="background-color: #0f172a;" data-i18n="color-black">黑</button>
                     <button onmousedown="event.preventDefault();" onclick="execCmd('foreColor', '#ffffff')" class="px-1.5 py-0.5 text-[11px] font-bold text-slate-800 hover:opacity-80 rounded shadow-sm border border-slate-300" style="background-color: #ffffff;" data-i18n="color-white">白</button>
 
@@ -275,14 +275,14 @@
                     <button onmousedown="event.preventDefault();" onclick="execCmd('removeFormat')" class="px-2 py-0.5 text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-600 rounded border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700"><i class="fa-solid fa-eraser"></i></button>
                     <div class="h-4 w-[1px] bg-slate-300 dark:bg-slate-600 mx-0.5"></div>
     
-                    <button onmousedown="event.preventDefault(); document.getElementById('local-img-input').click()" class="px-2 py-0.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-700 rounded border border-emerald-200 dark:border-emerald-800 bg-emerald-50/50 dark:bg-slate-700"><i class="fa-regular fa-image"></i> <span data-i18n="fmt-img">图</span></button>
+                    <button onmousedown="event.preventDefault(); document.getElementById('local-img-input').click()" class="px-2 py-0.5 text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-700 rounded border border-emerald-200 dark:border-emerald-800 bg-emerald-50/50 dark:bg-slate-700"><i class="fa-regular fa-image"></i> <span data-i18n="fmt-img">圖</span></button>
                 </div>
                 <input type="file" id="local-img-input" accept="image/*" class="hidden" onchange="handleLocalImageUpload(event)">
             </div>
             
             <div class="flex-1 flex flex-col p-5 overflow-y-auto w-full bg-white dark:bg-slate-950 relative">
-                <input id="note-title-input" oninput="handleEditorInput()" type="text" placeholder="此处输入新随笔标题..." class="w-full font-black text-2xl border-none outline-none mb-3 text-slate-900 dark:text-slate-100 placeholder-slate-300 dark:placeholder-slate-600 bg-transparent flex-shrink-0">
-                <div id="note-editor-richtext" contenteditable="true" oninput="handleEditorInput()" placeholder="在这里直接排版书写..." class="md-preview w-full flex-1 outline-none text-slate-800 dark:text-slate-200 break-words"></div>
+                <input id="note-title-input" oninput="handleEditorInput()" type="text" placeholder="此處輸入新隨筆標題..." class="w-full font-black text-2xl border-none outline-none mb-3 text-slate-900 dark:text-slate-100 placeholder-slate-300 dark:placeholder-slate-600 bg-transparent flex-shrink-0">
+                <div id="note-editor-richtext" contenteditable="true" oninput="handleEditorInput()" placeholder="在這裏直接排版書寫..." class="md-preview w-full flex-1 outline-none text-slate-800 dark:text-slate-200 break-words"></div>
             </div>
         </section>
         
@@ -294,7 +294,7 @@
                     <i class="fa-solid fa-dumpster-fire text-red-500"></i> <span data-i18n="trash-title">回收站</span> (<span id="trash-count-badge">0</span>)
                 </span>
                 <div class="flex items-center gap-2">
-                    <button onclick="recoverAllTrash()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-black py-2 rounded-xl text-xs transition-all shadow border border-emerald-500 flex items-center justify-center gap-1"><i class="fa-solid fa-trash-arrow-up"></i> <span data-i18n="btn-recover">恢复</span></button>
+                    <button onclick="recoverAllTrash()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-black py-2 rounded-xl text-xs transition-all shadow border border-emerald-500 flex items-center justify-center gap-1"><i class="fa-solid fa-trash-arrow-up"></i> <span data-i18n="btn-recover">恢復</span></button>
                     <button onclick="clearTrashCompletely()" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-black py-2 rounded-xl text-xs transition-all shadow border border-red-500 flex items-center justify-center gap-1"><i class="fa-solid fa-fire"></i> <span data-i18n="btn-empty">清空</span></button>
                 </div>
             </div>
@@ -303,33 +303,33 @@
     </div>
     
     <div id="custom-context-menu" class="hidden fixed bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl py-1.5 w-44 z-50 text-xs font-bold text-slate-700 dark:text-slate-200 select-none">
-        <button onclick="handleContextMenuRename()" class="w-full text-left px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2 font-black"><i class="fa-regular fa-pen-to-square text-blue-500"></i> <span data-i18n="ctx-rename">重命名分类</span></button>
-        <button id="ctx-delete-btn" onclick="handleContextMenuDelete()" class="w-full text-left px-4 py-2 hover:bg-red-50 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400 border-t border-slate-100 dark:border-slate-700 flex items-center gap-2 font-black"><i class="fa-regular fa-trash-can text-red-500"></i> <span data-i18n="ctx-delete">安全删除分类</span></button>
+        <button onclick="handleContextMenuRename()" class="w-full text-left px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center gap-2 font-black"><i class="fa-regular fa-pen-to-square text-blue-500"></i> <span data-i18n="ctx-rename">重命名分類</span></button>
+        <button id="ctx-delete-btn" onclick="handleContextMenuDelete()" class="w-full text-left px-4 py-2 hover:bg-red-50 dark:hover:bg-red-900/30 text-red-600 dark:text-red-400 border-t border-slate-100 dark:border-slate-700 flex items-center gap-2 font-black"><i class="fa-regular fa-trash-can text-red-500"></i> <span data-i18n="ctx-delete">安全刪除分類</span></button>
     </div>
 
     <script>
         // ==========================================
-        // 字典与翻译辅助引擎
+        // 字典與翻譯輔助引擎
         // ==========================================
         const dict = {
             zh: {
-                'nav-logout': '退出登入', 'nav-delete': '註銷帳號', 'nav-history': '历史',
-                'theme-title': '主題模式', 'theme-light': '浅色模式', 'theme-dark': '深色模式', 'theme-sys': '跟随系统',
-                'lang-toggle': '切换语言 / EN',
-                'nav-sidebar': '侧栏', 'app-title': '云端笔记',
+                'nav-logout': '退出登入', 'nav-delete': '註銷帳號', 'nav-history': '歷史',
+                'theme-title': '主題模式', 'theme-light': '淺色模式', 'theme-dark': '深色模式', 'theme-sys': '跟隨系統',
+                'lang-toggle': '切換語言 / EN',
+                'nav-sidebar': '側欄', 'app-title': '雲端筆記',
                 'btn-new-note': '新增筆記', 'btn-new-folder': '新增分類',
-                'btn-import-export': '匯入與匯出', 'label-folder': '文件夹',
-                'label-content': '内容展示', 'label-editor': '编辑栏',
-                'label-category': '归属地:', 'trash-title': '回收站',
-                'btn-list': '列表', 'btn-grid': '图表',
-                'all-docs': '全文档展示', 'no-data': '无数据', 'trash-empty': '回收站空空如也',
-                'untitled': '无标题', 'original-folder': '原位置:',
-                'fmt-size': '字号', 'sz-1': '极小', 'sz-2': '小号', 'sz-3': '正常', 'sz-4': '大号', 'sz-5': '特大', 'sz-6': '超大', 'sz-7': '极巨',
-                'fmt-heading': '标题', 'h1': '一级标题', 'h2': '二级标题', 'h3': '三级标题', 'p': '正文',
-                'color-white': '白', 'color-red': '红', 'color-yellow': '黄', 'color-blue': '蓝', 'color-green': '绿', 'color-black': '黑',
-                'fmt-img': '图', 'btn-recover': '恢复', 'btn-empty': '清空', 'ctx-rename': '重命名分类', 'ctx-delete': '安全删除分类',
-                '未分类': '未分类', '工作': '工作', '生活': '生活',
-                'btn-import-folder': '导入文件夹', 'btn-export-folder': '导出文件夹'
+                'btn-import-export': '匯入與匯出', 'label-folder': '文件夾',
+                'label-content': '內容展示', 'label-editor': '編輯欄',
+                'label-category': '歸屬地:', 'trash-title': '回收站',
+                'btn-list': '列表', 'btn-grid': '圖表',
+                'all-docs': '全文檔展示', 'no-data': '無數據', 'trash-empty': '回收站空空如也',
+                'untitled': '無標題', 'original-folder': '原位置:',
+                'fmt-size': '字號', 'sz-1': '極小', 'sz-2': '小號', 'sz-3': '正常', 'sz-4': '大號', 'sz-5': '特大', 'sz-6': '超大', 'sz-7': '極巨',
+                'fmt-heading': '標題', 'h1': '一級標題', 'h2': '二級標題', 'h3': '三級標題', 'p': '正文',
+                'color-white': '白', 'color-red': '紅', 'color-yellow': '黃', 'color-blue': '藍', 'color-green': '綠', 'color-black': '黑',
+                'fmt-img': '圖', 'btn-recover': '恢復', 'btn-empty': '清空', 'ctx-rename': '重命名分類', 'ctx-delete': '安全刪除分類',
+                '未分類': '未分類', '工作': '工作', '生活': '生活',
+                'btn-import-folder': '導入文件夾', 'btn-export-folder': '導出文件夾'
             },
             en: {
                 'nav-logout': 'Logout', 'nav-delete': 'Delete Account', 'nav-history': 'History',
@@ -347,7 +347,7 @@
                 'fmt-heading': 'Heading', 'h1': 'Heading 1', 'h2': 'Heading 2', 'h3': 'Heading 3', 'p': 'Normal Text',
                 'color-white': 'W', 'color-red': 'R', 'color-yellow': 'Y', 'color-blue': 'B', 'color-green': 'G', 'color-black': 'Bk',
                 'fmt-img': 'Img', 'btn-recover': 'Restore', 'btn-empty': 'Empty', 'ctx-rename': 'Rename', 'ctx-delete': 'Delete safely',
-                '未分类': 'Uncategorized', '工作': 'Work', '生活': 'Life',
+                '未分類': 'Uncategorized', '工作': 'Work', '生活': 'Life',
                 'btn-import-folder': 'Import Folder', 'btn-export-folder': 'Export Folder'
             }
         };
@@ -372,7 +372,7 @@
         }
 
         // ==========================================
-        // 設定菜单收纳逻辑
+        // 設定菜單收納邏輯
         // ==========================================
         function toggleSettingsMenu(e) {
             e.stopPropagation(); 
@@ -412,26 +412,26 @@
         });
 
         // ==========================================
-        // 核心数据模型与同步应用逻辑
+        // 核心數據模型與同步應用邏輯
         // ==========================================
         let notes = [];
         let trashBin = [];
         let categories = [
-            { id: "未分类", name: "未分类", parentId: null },
+            { id: "未分類", name: "未分類", parentId: null },
             { id: "工作", name: "工作", parentId: null },
             { id: "生活", name: "生活", parentId: null }
         ];
-        let categoryColors = { "未分类": "#64748b", "工作": "#3b82f6", "生活": "#10b981" };
+        let categoryColors = { "未分類": "#64748b", "工作": "#3b82f6", "生活": "#10b981" };
         let folderTreeRelations = {}; 
         let leftExpandedFolders = {}; 
         let currentFilterCategory = "全部"; 
         let activeNoteId = null;
         let saveTimeout = null;
-        let draggedNoteId = null; // 用于记录当前正在拖拽的笔记ID
-        let isFolderSectionExpanded = true; // 记录文件夹区域是否展开
-        let isContentSectionExpanded = true; // 记录内容展示区域是否展开
+        let draggedNoteId = null; // 用於記錄當前正在拖拽的筆記ID
+        let isFolderSectionExpanded = true; // 記錄文件夾區域是否展開
+        let isContentSectionExpanded = true; // 記錄內容展示區域是否展開
 
-        // 控制内容展示区域折叠/展开的函数
+        // 控制內容展示區域摺疊/展開的函數
         function toggleContentSection() {
             isContentSectionExpanded = !isContentSectionExpanded;
             const container = document.getElementById('content-section-container');
@@ -446,7 +446,7 @@
             }
         }
 
-        // 控制文件夹区域折叠/展开的函数
+        // 控制文件夾區域摺疊/展開的函數
         function toggleFolderSection() {
             isFolderSectionExpanded = !isFolderSectionExpanded;
             const container = document.getElementById('category-tree-container');
@@ -472,9 +472,9 @@
         
         function toggleAuthMode() {
             isLoginMode = !isLoginMode;
-            document.getElementById('auth-title').innerText = isLoginMode ? '登入云端工作台' : '註冊新账号';
-            document.getElementById('auth-btn').innerText = isLoginMode ? '登入' : '立即注册';
-            document.getElementById('auth-toggle').innerText = isLoginMode ? '没有账号？点击注册新账号' : '已有帳號？點擊返回登入';
+            document.getElementById('auth-title').innerText = isLoginMode ? '登入雲端工作台' : '註冊新賬號';
+            document.getElementById('auth-btn').innerText = isLoginMode ? '登入' : '立即註冊';
+            document.getElementById('auth-toggle').innerText = isLoginMode ? '沒有賬號？點擊註冊新賬號' : '已有帳號？點擊返回登入';
             document.getElementById('auth-error').classList.add('hidden');
         }
         
@@ -482,9 +482,9 @@
             const u = document.getElementById('auth-username').value;
             const p = document.getElementById('auth-password').value;
             const errDiv = document.getElementById('auth-error');
-            if(!u || !p) { errDiv.innerText = "请输入账号和密码"; errDiv.classList.remove('hidden'); return; }
+            if(!u || !p) { errDiv.innerText = "請輸入賬號和密碼"; errDiv.classList.remove('hidden'); return; }
             const endpoint = isLoginMode ? '/api/login' : '/api/register';
-            document.getElementById('auth-btn').innerText = "请稍候...";
+            document.getElementById('auth-btn').innerText = "請稍候...";
             
             try {
                 const res = await fetch(endpoint, {
@@ -500,20 +500,20 @@
                     document.getElementById('auth-overlay').classList.add('hidden');
                     loadCloudData();
                 } else {
-                    errDiv.innerText = data.message || "执行失败，请检查数据库绑定";
+                    errDiv.innerText = data.message || "執行失敗，請檢查數據庫綁定";
                     errDiv.classList.remove('hidden');
                 }
             } catch(e) {
-                alert("网络或代码错误: " + e.message);
-                errDiv.innerText = "网络请求失败，请确保已绑定KV并重试部署";
+                alert("網絡或代碼錯誤: " + e.message);
+                errDiv.innerText = "網絡請求失敗，請確保已綁定KV並重試部署";
                 errDiv.classList.remove('hidden');
             }
-            document.getElementById('auth-btn').innerText = isLoginMode ? '登入' : '立即注册';
+            document.getElementById('auth-btn').innerText = isLoginMode ? '登入' : '立即註冊';
         }
 
         async function deleteAccount() {
             if(!cfUser) return;
-            const isConfirmed = confirm(`🚨 危险操作警告 🚨\n\n此操作将彻底销毁您的账号【${cfUser}】以及云端所有的笔记数据！\n\n点击“确定”立即注销，点击“取消”放弃。`);
+            const isConfirmed = confirm(`🚨 危險操作警告 🚨\n\n此操作將徹底銷燬您的賬號【${cfUser}】以及雲端所有的筆記數據！\n\n點擊“確定”立即註銷，點擊“取消”放棄。`);
             if (!isConfirmed) return;
 
             try {
@@ -523,15 +523,15 @@
                 });
                 const data = await res.json();
                 if(res.ok && data.success) {
-                    alert("销毁成功：您的账号及所有云端数据已从服务器彻底清除！");
+                    alert("銷燬成功：您的賬號及所有云端數據已從服務器徹底清除！");
                     localStorage.removeItem('cfUser');
                     localStorage.removeItem('cfPass');
                     location.reload(); 
                 } else {
-                    alert("注销失败：" + (data.message || "未知错误"));
+                    alert("註銷失敗：" + (data.message || "未知錯誤"));
                 }
             } catch(e) {
-                alert("网络请求失败：" + e.message);
+                alert("網絡請求失敗：" + e.message);
             }
         }
         
@@ -576,7 +576,7 @@
             try {
                 const response = await fetch('/api/sync', { headers: getAuthHeaders() });
                 if (response.status === 401) { logout(); return; }
-                if (!response.ok) throw new Error('网络响应异常');
+                if (!response.ok) throw new Error('網絡響應異常');
                 const data = await response.json();
                 if (data.notes) notes = data.notes;
                 if (data.categories) {
@@ -591,7 +591,7 @@
                 if (data.folderTreeRelations) folderTreeRelations = data.folderTreeRelations;
                 if (data.leftExpandedFolders) leftExpandedFolders = data.leftExpandedFolders;
             } catch (error) {
-                console.log("数据拉取失败或首次使用", error);
+                console.log("數據拉取失敗或首次使用", error);
             }
             refreshAllViews();
             if (notes.length > 0) {
@@ -619,7 +619,7 @@
                     body: JSON.stringify(allData)
                 });
             } catch (error) {
-                console.error("保存到云端失败", error);
+                console.error("保存到雲端失敗", error);
             }
         }
         
@@ -741,12 +741,12 @@
                         }
                     };
                    
-                    // --- 新增：文件夹拖放接收逻辑 ---
-                    cell.classList.add('folder-drop-target'); // 打个标记，方便清理样式
+                    // --- 新增：文件夾拖放接收邏輯 ---
+                    cell.classList.add('folder-drop-target'); // 打個標記，方便清理樣式
                     cell.ondragover = (e) => {
                         if (draggedNoteId) {
-                            e.preventDefault(); // 必须阻止默认行为，允许元素放入
-                            cell.classList.add('bg-blue-100', 'dark:bg-blue-900', 'border-blue-400', 'border-dashed'); // 移入时高亮变色
+                            e.preventDefault(); // 必須阻止默認行為，允許元素放入
+                            cell.classList.add('bg-blue-100', 'dark:bg-blue-900', 'border-blue-400', 'border-dashed'); // 移入時高亮變色
                         }
                     };
                     cell.ondragleave = (e) => {
@@ -756,12 +756,12 @@
                         e.preventDefault();
                         cell.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'border-blue-400', 'border-dashed');
                         if (draggedNoteId) {
-                            // 找到拖拽的笔记，修改它的 category
+                            // 找到拖拽的筆記，修改它的 category
                             const idx = notes.findIndex(n => n.id === draggedNoteId);
                             if (idx !== -1 && notes[idx].category !== cat.id) {
                                 notes[idx].category = cat.id; 
                                 saveCloudData();
-                                refreshAllViews(); // 刷新视图，你会看到侧边栏数量和列表瞬间变化
+                                refreshAllViews(); // 刷新視圖，你會看到側邊欄數量和列表瞬間變化
                             }
                         }
                     };
@@ -784,13 +784,13 @@
             const container = document.getElementById('left-notes-container'); container.innerHTML = '';
             let displayNotes = notes;
     
-            // 1. 先按分类目录过滤
+            // 1. 先按分類目錄過濾
             if (currentFilterCategory !== "全部") { 
                 const targetIds = getAllCategoryIds(currentFilterCategory);
                 displayNotes = notes.filter(n => targetIds.includes(n.category)); 
             }
 
-            // 💡 2. 新增：按搜索框关键字过滤（同时搜索标题和内容，忽略大小写）
+            // 💡 2. 新增：按搜索框關鍵字過濾（同時搜索標題和內容，忽略大小寫）
             const searchInput = document.getElementById('global-search-input');
             if (searchInput && searchInput.value.trim() !== '') {
                 const keyword = searchInput.value.trim().toLowerCase();
@@ -801,7 +801,7 @@
                 });
             }
     
-            // 💡 改为直接使用数组的物理顺序，不再强制按时间排序，让拖拽排序生效
+            // 💡 改為直接使用數組的物理順序，不再強制按時間排序，讓拖拽排序生效
             const sorted = displayNotes;
             if (sorted.length === 0) { container.innerHTML = `<p class="text-slate-400 text-center text-sm py-4 font-bold">${t('no-data')}</p>`; return; }
     
@@ -839,24 +839,24 @@
                     `;
                 }
 
-                // --- 新增：笔记拖拽与排序逻辑 ---
+                // --- 新增：筆記拖拽與排序邏輯 ---
                 box.draggable = true;
                 
-                // 开始拖拽：记录ID，变半透明
+                // 開始拖拽：記錄ID，變半透明
                 box.ondragstart = (e) => {
                     draggedNoteId = note.id;
                     e.dataTransfer.effectAllowed = 'move';
                     setTimeout(() => box.classList.add('opacity-40', 'scale-95'), 0);
                 };
                 
-                // 拖拽结束：清理样式
+                // 拖拽結束：清理樣式
                 box.ondragend = (e) => {
                     draggedNoteId = null;
                     box.classList.remove('opacity-40', 'scale-95');
                     document.querySelectorAll('.folder-drop-target').forEach(el => el.classList.remove('bg-blue-100', 'dark:bg-blue-900', 'border-blue-400', 'border-dashed'));
                 };
                 
-                // 拖拽悬停在其他笔记上方：显示蓝色的顶部边框作为插入提示
+                // 拖拽懸停在其他筆記上方：顯示藍色的頂部邊框作為插入提示
                 box.ondragover = (e) => {
                     if (draggedNoteId && draggedNoteId !== note.id) {
                         e.preventDefault(); 
@@ -867,7 +867,7 @@
                     box.classList.remove('border-t-2', 'border-blue-500');
                 };
                 
-                // 松开鼠标：执行位置互换
+                // 鬆開鼠標：執行位置互換
                 box.ondrop = (e) => {
                     e.preventDefault();
                     box.classList.remove('border-t-2', 'border-blue-500');
@@ -875,7 +875,7 @@
                         const fromIdx = notes.findIndex(n => n.id === draggedNoteId);
                         const toIdx = notes.findIndex(n => n.id === note.id);
                         if (fromIdx !== -1 && toIdx !== -1) {
-                            // 从原位置抽离，并插入到目标位置
+                            // 從原位置抽離，並插入到目標位置
                             const [movedItem] = notes.splice(fromIdx, 1);
                             const newToIdx = notes.findIndex(n => n.id === note.id);
                             notes.splice(newToIdx, 0, movedItem);
@@ -899,7 +899,7 @@
             }
             trashBin.forEach((note) => {
                 const card = document.createElement('div'); card.className = "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-3 rounded-xl relative group text-xs shadow-sm hover:shadow transition-all mb-2";
-                const catObj = categories.find(c => c.id === note.category) || {name: '未分类'};
+                const catObj = categories.find(c => c.id === note.category) || {name: '未分類'};
                 const displayTitle = note.title || t('untitled');
                 card.innerHTML = `
                     <div class="pr-16 truncate">
@@ -907,8 +907,8 @@
                         <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium block flex items-center gap-1"><i class="fa-solid fa-folder-open text-slate-400"></i> ${t('original-folder')} ${t(catObj.name)}</span>
                     </div>
                     <div class="absolute right-2 top-2 flex gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity">
-                        <button onclick="recoverDeletedFile('${note.id}')" title="恢复" class="p-1.5 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 rounded-lg text-emerald-600 dark:text-emerald-400 font-bold"><i class="fa-solid fa-rotate-left"></i></button>
-                        <button onclick="permanentlyDeleteFile('${note.id}')" title="彻底删除" class="p-1.5 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400"><i class="fa-solid fa-xmark"></i></button>
+                        <button onclick="recoverDeletedFile('${note.id}')" title="恢復" class="p-1.5 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 rounded-lg text-emerald-600 dark:text-emerald-400 font-bold"><i class="fa-solid fa-rotate-left"></i></button>
+                        <button onclick="permanentlyDeleteFile('${note.id}')" title="徹底刪除" class="p-1.5 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 `;
                 container.appendChild(card);
@@ -916,9 +916,9 @@
         }
         
         function createNewNote() {
-            const defaultCat = currentFilterCategory !== "全部" ? currentFilterCategory : "未分类";
+            const defaultCat = currentFilterCategory !== "全部" ? currentFilterCategory : "未分類";
             const newDoc = { id: 'md_' + Date.now(), title: '', content: '', category: defaultCat, updatedAt: Date.now() };
-            // 💡 改用 unshift，让新插入的笔记永远排在数组最顶端（第一位）
+            // 💡 改用 unshift，讓新插入的筆記永遠排在數組最頂端（第一位）
             notes.unshift(newDoc); 
             saveCloudData(); openNote(newDoc.id);
         }
@@ -929,19 +929,19 @@
                 document.getElementById('note-title-input').value = target.title;
                 document.getElementById('note-editor-richtext').innerHTML = target.content;
                 refreshAllViews(); 
-                document.getElementById('note-category-select').value = target.category || "未分类";
+                document.getElementById('note-category-select').value = target.category || "未分類";
             }
         }
         
-        // 💡 新增的删除拦截确认函数
+        // 💡 新增的刪除攔截確認函數
         function confirmDelete(event, id) {
-            // 阻止冒泡，防止触发外层 div 的点击打开笔记事件
+            // 阻止冒泡，防止觸發外層 div 的點擊打開筆記事件
             event.stopPropagation();
             
-            // 弹出确认框
-            const isConfirmed = confirm("🚨 确定要将这条笔记移入回收站吗？");
+            // 彈出確認框
+            const isConfirmed = confirm("🚨 確定要將這條筆記移入回收站嗎？");
             
-            // 只有点击确定，才执行原有的删除逻辑
+            // 只有點擊確定，才執行原有的刪除邏輯
             if (isConfirmed) {
                 deleteNote(id);
             }
@@ -989,10 +989,10 @@
         }
         
         function handleContextMenuDelete() {
-            if (!rightClickedCategoryId || rightClickedCategoryId === "未分类") return;
+            if (!rightClickedCategoryId || rightClickedCategoryId === "未分類") return;
             const catObj = categories.find(c => c.id === rightClickedCategoryId);
             if(!catObj) return;
-            if (confirm(`确定删除分类目录【${catObj.name}】？其内部子目录及所属笔记都将全部进入回收站。`)) {
+            if (confirm(`確定刪除分類目錄【${catObj.name}】？其內部子目錄及所屬筆記都將全部進入回收站。`)) {
                 let idsToDelete = [rightClickedCategoryId];
                 function findSubIds(pId) {
                     categories.forEach(c => {
@@ -1015,14 +1015,14 @@
         }
         
         function createNewCategory() {
-            const name = prompt("创建全新分类文件夹名称：");
+            const name = prompt("創建全新分類文件夾名稱：");
             if (!name || name.trim() === "") return;
             
             let parentId = null;
             if (currentFilterCategory !== "全部") {
                 parentId = currentFilterCategory;
             } else {
-                const wantParent = confirm("需要将此新文件夹作为当前高亮目录下级子文件夹吗？")
+                const wantParent = confirm("需要將此新文件夾作為當前高亮目錄下級子文件夾嗎？")
                 if(wantParent && activeNoteId) {
                     const currentNote = notes.find(n => n.id === activeNoteId);
                     if(currentNote) parentId = currentNote.category;
@@ -1052,14 +1052,14 @@
         
         function recoverAllTrash() {
             if (trashBin.length === 0) return;
-            if (confirm("确定要恢复全部回收站文档吗？")) {
+            if (confirm("確定要恢復全部回收站文檔嗎？")) {
                 notes.push(...trashBin); trashBin = []; saveCloudData(); refreshAllViews();
             }
         }
         
         function clearTrashCompletely() { 
             if (trashBin.length === 0) return;
-            if (confirm("警告：不可挽回！确定清空回收站吗？")) { trashBin = []; saveCloudData(); refreshAllViews(); } 
+            if (confirm("警告：不可挽回！確定清空回收站嗎？")) { trashBin = []; saveCloudData(); refreshAllViews(); } 
         }
         
         function recoverDeletedFile(id) { 
@@ -1068,7 +1068,7 @@
         }
         
         function permanentlyDeleteFile(id) { 
-            if (confirm("永久粉碎不可挽回，是否继续？")) { trashBin = trashBin.filter(t => t.id !== id); saveCloudData(); refreshAllViews(); } 
+            if (confirm("永久粉碎不可挽回，是否繼續？")) { trashBin = trashBin.filter(t => t.id !== id); saveCloudData(); refreshAllViews(); } 
         }
         
         function toggleLeftPanel() { leftPanelClosed = !leftPanelClosed; document.getElementById('left-panel').classList.toggle('hidden', leftPanelClosed); document.getElementById('resizer-left').classList.toggle('hidden', leftPanelClosed); }
@@ -1159,19 +1159,19 @@
                 });
          }
      
-        function insertHyperlink() { const url = prompt("请输入超级链接地址:", "https://"); if (url) execCmd('createLink', url); }
-        function insertImageUrl() { const url = prompt("请输入网络图片地址:", "https://"); if (url) execCmd('insertImage', url); }
+        function insertHyperlink() { const url = prompt("請輸入超級鏈接地址:", "https://"); if (url) execCmd('createLink', url); }
+        function insertImageUrl() { const url = prompt("請輸入網絡圖片地址:", "https://"); if (url) execCmd('insertImage', url); }
         function execCmd(command, value = null) { document.execCommand(command, false, value); handleEditorInput(); }
         function wrapHTML(startTag, endTag) { const selection = window.getSelection(); if (!selection.rangeCount) return; execCmd('insertHTML', startTag + selection.toString() + endTag); }
         function triggerImport(type) { if (type === 'md') document.getElementById('import-md-input').click(); if (type === 'txt') document.getElementById('import-txt-input').click(); }
         function triggerFolderImport() { document.getElementById('import-folder-input').click(); }
         
         // ==========================================
-        // 核心新功能：将当前选中的文件夹递归打包成 ZIP 导出
+        // 核心新功能：將當前選中的文件夾遞歸打包成 ZIP 導出
         // ==========================================
         async function exportCurrentFolder() {
             if (currentFilterCategory === "全部") {
-                alert("请先在左侧选择一个特定的分类文件夹后再导出！");
+                alert("請先在左側選擇一個特定的分類文件夾後再導出！");
                 return;
             }
 
@@ -1185,13 +1185,13 @@
             try {
                 const zip = new JSZip();
                 
-                // 递归抓取文件并按层级放入 ZIP 的函数
+                // 遞歸抓取文件並按層級放入 ZIP 的函數
                 function addFilesToZip(folderId, currentZipFolder) {
-                    // 1. 把属于当前层级的笔记转换为 MD 并写入
+                    // 1. 把屬於當前層級的筆記轉換為 MD 並寫入
                     const notesInFolder = notes.filter(n => n.category === folderId);
                     notesInFolder.forEach(note => {
                         let mdContent = note.content;
-                        // 如果有 HTML 标签，则尝试用 Turndown 转换为纯 Markdown
+                        // 如果有 HTML 標籤，則嘗試用 Turndown 轉換為純 Markdown
                         if (typeof TurndownService !== 'undefined' && note.content.includes('<')) {
                             mdContent = new TurndownService().turndown(note.content);
                         }
@@ -1199,7 +1199,7 @@
                         currentZipFolder.file(`${safeTitle}.md`, mdContent);
                     });
 
-                    // 2. 找到所有子文件夹，递归创建目录并继续抓取
+                    // 2. 找到所有子文件夾，遞歸創建目錄並繼續抓取
                     const subFolders = categories.filter(c => c.parentId === folderId);
                     subFolders.forEach(sub => {
                         const safeDirName = sub.name.replace(/[\\/:*?"<>|]/g, "_");
@@ -1208,25 +1208,25 @@
                     });
                 }
 
-                // 创建以当前文件夹命名的根目录，并开始递归
+                // 創建以當前文件夾命名的根目錄，並開始遞歸
                 const rootFolderName = currentCatObj.name.replace(/[\\/:*?"<>|]/g, "_");
                 const rootZip = zip.folder(rootFolderName);
                 addFilesToZip(currentFilterCategory, rootZip);
 
-                // 生成 ZIP 文件并触发浏览器下载
+                // 生成 ZIP 文件並觸發瀏覽器下載
                 const content = await zip.generateAsync({ type: "blob" });
                 const url = window.URL.createObjectURL(content);
                 const a = document.createElement("a");
                 a.href = url;
-                a.download = `${rootFolderName}_备份.zip`;
+                a.download = `${rootFolderName}_備份.zip`;
                 a.click();
                 window.URL.revokeObjectURL(url);
                 
             } catch (error) {
-                console.error("打包导出失败:", error);
-                alert("导出失败，请检查控制台报错。");
+                console.error("打包導出失敗:", error);
+                alert("導出失敗，請檢查控制台報錯。");
             } finally {
-                // 恢复按钮原状
+                // 恢復按鈕原狀
                 document.querySelector('button[onclick="exportCurrentFolder()"]').innerHTML = originalBtnText;
             }
         }
@@ -1237,7 +1237,7 @@
             reader.onload = function(e) {
                 let parsed = e.target.result;
                 if(type === 'md' && typeof marked !== 'undefined') parsed = marked.parse(parsed);
-                const defaultCat = currentFilterCategory !== "全部" ? currentFilterCategory : "未分类";
+                const defaultCat = currentFilterCategory !== "全部" ? currentFilterCategory : "未分類";
                 const doc = { id: 'md_' + Date.now(), title: file.name.replace(/\.[^/.]+$/, ""), content: parsed, category: defaultCat, updatedAt: Date.now() };
                 notes.push(doc); saveCloudData(); openNote(doc.id); event.target.value = '';
             };
@@ -1271,7 +1271,7 @@
                         }
                     }
 
-                    const finalCategory = currentParentId || "未分类";
+                    const finalCategory = currentParentId || "未分類";
                     let parsed = e.target.result;
                     if(file.name.endsWith('.md') && typeof marked !== 'undefined') parsed = marked.parse(parsed);
                     
@@ -1290,7 +1290,7 @@
                         saveCloudData(); 
                         currentFilterCategory = finalCategory; 
                         if (firstId) openNote(firstId); else refreshAllViews(); 
-                        alert("多级目录树导入成功！");
+                        alert("多級目錄樹導入成功！");
                     }
                 };
                 reader.readAsText(file);
@@ -1299,7 +1299,7 @@
         }
 
         function exportFile(formatType) {
-            const title = document.getElementById('note-title-input').value || '未命名随笔';
+            const title = document.getElementById('note-title-input').value || '未命名隨筆';
             let content = document.getElementById('note-editor-richtext').innerText;
             if (formatType === 'md' && typeof TurndownService !== 'undefined') { content = new TurndownService().turndown(document.getElementById('note-editor-richtext').innerHTML); }
             const blob = new Blob([content], {type: 'text/plain;charset=utf-8'});
@@ -1314,7 +1314,7 @@
                if (!file) return;
 
                if (!file.type.startsWith('image/')) {
-                   alert('请选择图片类型的文件！');
+                   alert('請選擇圖片類型的文件！');
                    return;
                }
 
@@ -1327,7 +1327,7 @@
                         editor.focus();
                         document.execCommand('insertImage', false, base64Image);
                     } else {
-                         console.error("找不到编辑器 ID，请检查 HTML 中的 ID 是否为 note-editor-richtext");
+                         console.error("找不到編輯器 ID，請檢查 HTML 中的 ID 是否為 note-editor-richtext");
                     }
                };
     
@@ -1349,13 +1349,13 @@
         }
 
         // ==========================================
-        // 3. PWA Service Worker 注册
+        // 3. PWA Service Worker 註冊
         // ==========================================
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('PWA Service Worker 注册成功!', reg))
-                    .catch(err => console.error('PWA 注册失败:', err));
+                    .then(reg => console.log('PWA Service Worker 註冊成功!', reg))
+                    .catch(err => console.error('PWA 註冊失敗:', err));
             });
         }
     </script>
